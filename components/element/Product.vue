@@ -10,6 +10,10 @@ const props: any = defineProps({
     type: String,
     default: "",
   },
+  imageSizeClasses: {
+    type: String,
+    default: "",
+  },
 });
 
 const { $settings, $storeino, $tools }: any = useNuxtApp();
@@ -176,7 +180,7 @@ const removeFromWishlist = () => {
     <!--  -->
     <div
       :class="props.page == 'shop' ? '' : 'w-full'"
-      class="w-1/3 wishlist relative overflow-hidden shadow"
+      class="w-1/3 wishlist relative shadow"
     >
       <!--  -->
       <NuxtLink
@@ -187,7 +191,7 @@ const removeFromWishlist = () => {
       >
         <!--  -->
         <ImageLoader
-          img-class="object-cover w-[400px] h-full"
+          :img-class="`object-cover ${imageSizeClasses}`"
           :src="props.item.images.length > 0 ? props.item.images[0].src : null"
           :alt="props.item.name"
         />
@@ -203,7 +207,7 @@ const removeFromWishlist = () => {
       <div v-if="products.stock.active" class="absolute top-1 left-1 z-10 m-2">
         <!--  -->
         <div
-          class="h-6 flex items-center justify-center text-white rounded-sm px-2"
+          class="h-6 flex items-center justify-center text-white px-2"
           :style="{ backgroundColor: stockColor }"
         >
           <!--  -->
@@ -219,7 +223,7 @@ const removeFromWishlist = () => {
     <!--  -->
     <div
       :class="props.page == 'shop' ? 'w-2/3 flex-row' : 'w-full flex-col'"
-      class="h-full flex justify-between gap-2 p-3"
+      class="h-full flex gap-2 p-3"
     >
       <!--  -->
       <div class="flex flex-col gap-2">
@@ -259,7 +263,7 @@ const removeFromWishlist = () => {
           <!--  -->
           <div
             v-if="discount"
-            class="flex items-center justify-center h-5 px-2 rounded-sm bg-primary text-white"
+            class="flex items-center justify-center h-5 px-2 bg-primary text-white"
           >
             <!--  -->
             <span class="text-xs font-normal"
@@ -284,7 +288,7 @@ const removeFromWishlist = () => {
             <!--  -->
             <button
               :title="isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'"
-              class="h-9 w-9 flex items-center justify-center rounded-full text-secondary shadow hover:text-white transition-all duration-300"
+              :class="`h-9 w-9 flex items-center justify-center text-secondary ${textColorClass} transition-all duration-300`"
               @click="toggleWishlist"
             >
               <!--  -->
@@ -307,7 +311,7 @@ const removeFromWishlist = () => {
                 props.item.type == 'simple' &&
                 props.item.price.salePrice > 0
               "
-              class="h-9 w-9 flex items-center justify-center rounded-full text-white hover:text-secondary transition-all duration-300"
+              :class="`h-9 w-9 flex items-center justify-center ${textColorClass} hover:text-secondary transition-all duration-300`"
               @click="addToCart()"
             >
               <!--  -->
@@ -320,27 +324,6 @@ const removeFromWishlist = () => {
             <!--  -->
 
             <!--  -->
-            <NuxtLink
-              v-if="!outOfStock && props.item.type == 'variable'"
-              :to="`/products/${props.item.slug}`"
-              class="h-9 w-9 flex items-center justify-center rounded-full border border-secondary bg-secondary text-white hover:bg-transparent hover:text-secondary transition-all duration-300"
-            >
-              <!--  -->
-              <Icon name="solar:eye-linear" class="text-lg translate" />
-              <!--  -->
-            </NuxtLink>
-            <!--  -->
-
-            <!--  -->
-            <NuxtLink
-              v-if="outOfStock"
-              :to="`/products/${props.item.slug}`"
-              class="h-9 w-9 flex items-center justify-center rounded-full border border-secondary bg-secondary text-white hover:bg-transparent hover:text-secondary transition-all duration-300"
-            >
-              <!--  -->
-              <Icon name="solar:eye-linear" class="text-2xl translate" />
-              <!--  -->
-            </NuxtLink>
             <!--  -->
           </div>
         </div>

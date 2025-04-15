@@ -17,7 +17,11 @@ console.log(selections);
     </div>
     <div v-for="(product, index) in selections.products" :key="index">
       <div>
-        <ElementProduct :item="product" textColorClass="text-white" />
+        <ElementProduct
+          :item="product"
+          textColorClass="text-white"
+          imageSizeClasses="w-[400px]"
+        />
       </div>
     </div>
   </div>

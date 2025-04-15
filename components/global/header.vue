@@ -55,7 +55,7 @@ onMounted(() => {
 
 <template>
   <!--  -->
-  <div class="header fixed top-0 w-full z-10">
+  <div class="header fixed top-0 w-full z-[9999]">
     <!--  -->
     <appsLoader placement="BEFORE_HEADER" />
     <!--  -->

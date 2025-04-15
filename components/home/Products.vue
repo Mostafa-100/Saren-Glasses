@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import { useMainStore } from '@/stores/main';
-import { useNuxtApp } from '#app';
+import { ref, computed, onMounted } from "vue";
+import { useMainStore } from "@/stores/main";
+import { useNuxtApp } from "#app";
 
 // Access global settings
 const { $settings, $storeino }: any = useNuxtApp();
@@ -44,9 +44,9 @@ const hasTitleOrDescription = computed(() => title.value || description.value);
 
 const noProductsMessage = computed(() => {
   switch (languageCode.value) {
-    case 'AR':
-      return 'ليس لديك أي منتجات';
-    case 'FR':
+    case "AR":
+      return "ليس لديك أي منتجات";
+    case "FR":
       return "Vous n'avez aucun produit";
     default:
       return "You don't have any products";
@@ -55,34 +55,34 @@ const noProductsMessage = computed(() => {
 
 const goToAdminMessage = computed(() => {
   switch (languageCode.value) {
-    case 'AR':
-      return 'انتقل إلى مسؤول متجرك > المنتجات >';
-    case 'FR':
+    case "AR":
+      return "انتقل إلى مسؤول متجرك > المنتجات >";
+    case "FR":
       return "Allez dans l'administration de votre boutique > produits >";
     default:
-      return 'Go to your store admin > products >';
+      return "Go to your store admin > products >";
   }
 });
 
 const addNewLabel = computed(() => {
   switch (languageCode.value) {
-    case 'AR':
-      return 'اضف جديد';
-    case 'FR':
-      return 'Ajouter nouveau';
+    case "AR":
+      return "اضف جديد";
+    case "FR":
+      return "Ajouter nouveau";
     default:
-      return 'Add new';
+      return "Add new";
   }
 });
 
 const viewDemoLabel = computed(() => {
   switch (languageCode.value) {
-    case 'AR':
-      return 'شاهد العرض التوضيحي للسمة';
-    case 'FR':
-      return 'Voir la démo du thème';
+    case "AR":
+      return "شاهد العرض التوضيحي للسمة";
+    case "FR":
+      return "Voir la démo du thème";
     default:
-      return 'View theme demo';
+      return "View theme demo";
   }
 });
 
@@ -93,13 +93,13 @@ onMounted(() => {
 async function fetchProducts() {
   loading.value = true;
   try {
-    const filter: any = { status: 'PUBLISH' };
+    const filter: any = { status: "PUBLISH" };
     if (collections.value.length) {
-      filter['collections._id-in'] = collections.value.map((c: any) => c._id);
+      filter["collections._id-in"] = collections.value.map((c: any) => c._id);
     }
 
     if (tags.value.length) {
-      filter['tags._id-in'] = tags.value.split(',');
+      filter["tags._id-in"] = tags.value.split(",");
     }
 
     const { data } = await $storeino.products.search(filter);
@@ -128,63 +128,40 @@ async function fetchProducts() {
     <!--  -->
     <div v-if="!loading && items.length > 0" class="flex flex-col gap-6">
       <!--  -->
-      <div v-if="hasTitleOrDescription" class="flex flex-col gap-1">
+      <div
+        v-if="hasTitleOrDescription"
+        class="flex flex-col md:flex-row md:justify-between md:items-center"
+      >
         <!--  -->
-        <h3 v-if="title" class="text-xl lg:text-2xl font-extrabold title-font">
-          {{ title }}
-        </h3>
+        <GlobalSectionHeader :content="title" />
         <!--  -->
 
         <!--  -->
-        <div v-if="description" class="text-sm font-medium text-primary">
+        <div v-if="description" class="text-sm max-w-[470px]">
           {{ description }}
         </div>
         <!--  -->
-      </div>
-      <!--  -->
-
-      <!--  -->
-      <div class="overflow-hidden">
-        <!--  -->
-        <ClientOnly>
-          <!--  -->
-          <swiper-container
-            :breakpoints="swiperBreakpoints"
-            :slides-per-view="1"
-            space-between="16"
-          >
-            <!--  -->
-            <swiper-slide
-              v-for="(item, index) in items"
-              :key="index"
-              class="h-auto border border-third rounded-2xl overflow-hidden"
-            >
-              <!--  -->
-              <ElementProduct :item="item" page="home" />
-              <!--  -->
-            </swiper-slide>
-            <!--  -->
-          </swiper-container>
-          <!--  -->
-        </ClientOnly>
-        <!--  -->
-      </div>
-      <!--  -->
-
-      <!--  -->
-      <div class="flex items-center justify-center">
-        <!--  -->
-        <NuxtLink
+        <GlobalSectionLink
           v-if="showMoreText"
-          :to="showMoreUrl"
-          class="h-10 w-fit px-8 md:px-16 flex items-center justify-center bg-secondary text-white border border-secondary rounded-full hover:bg-transparent hover:text-secondary transition-all duration-300"
-        >
-          <!--  -->
-          <span class="text-sm font-normal">{{ showMoreText }}</span>
-          <!--  -->
-        </NuxtLink>
-        <!--  -->
+          :link="showMoreUrl"
+          :label="showMoreText"
+        />
       </div>
+      <!--  -->
+
+      <!--  -->
+      <ClientOnly>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <ElementProduct
+            v-for="(item, index) in items"
+            :key="index"
+            :item="item"
+            page="home"
+            textColorClass="text-black"
+          />
+        </div>
+        <!--  -->
+      </ClientOnly>
       <!--  -->
     </div>
     <!--  -->
