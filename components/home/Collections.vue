@@ -1,13 +1,25 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { ref, computed, onMounted } from "vue";
+import { useMainStore } from "@/stores/main";
 
 const { $storeino, $settings }: any = useNuxtApp();
 const $store = useMainStore();
 
 const items: any = ref([]);
 const loading = ref(true);
-const collections = $settings.sections.collections;
+let collections = $settings.sections.collections;
+
+console.log("Collections", collections);
+
+// collections = splitArray(collections);
+
+// TODO: Splite collections into two parts one contain 3 collections, and rest contain the rest
+
+function splitArray(arr) {
+  const firstThree = arr.slice(0, 3);
+  const rest = arr.slice(3);
+  return [firstThree, rest];
+}
 
 const swiperBreakpoints = {
   320: { slidesPerView: 2.5 },
@@ -19,17 +31,17 @@ const swiperBreakpoints = {
 };
 
 const navigation = ref({
-  nextEl: '.swiper-button-next',
-  prevEl: '.swiper-button-prev',
+  nextEl: ".swiper-button-next",
+  prevEl: ".swiper-button-prev",
 });
 
 const languageCode = computed(() => $store.language.code);
 
 const noProductsMessage = computed(() => {
   switch (languageCode.value) {
-    case 'AR':
-      return 'ليس لديك أي مجموعات';
-    case 'FR':
+    case "AR":
+      return "ليس لديك أي مجموعات";
+    case "FR":
       return "Vous n'avez aucune collection";
     default:
       return "You don't have any collection";
@@ -38,34 +50,34 @@ const noProductsMessage = computed(() => {
 
 const goToAdminMessage = computed(() => {
   switch (languageCode.value) {
-    case 'AR':
-      return 'انتقل إلى مسؤول المتجر الخاص بك > المنتجات > المجموعات';
-    case 'FR':
+    case "AR":
+      return "انتقل إلى مسؤول المتجر الخاص بك > المنتجات > المجموعات";
+    case "FR":
       return "Accédez à l'administration de votre boutique > produits > collections >";
     default:
-      return 'Go to your store admin > products > collections >';
+      return "Go to your store admin > products > collections >";
   }
 });
 
 const addNewLabel = computed(() => {
   switch (languageCode.value) {
-    case 'AR':
-      return 'اضف جديد';
-    case 'FR':
-      return 'Ajouter nouveau';
+    case "AR":
+      return "اضف جديد";
+    case "FR":
+      return "Ajouter nouveau";
     default:
-      return 'Add new';
+      return "Add new";
   }
 });
 
 const viewDemoLabel = computed(() => {
   switch (languageCode.value) {
-    case 'AR':
-      return 'شاهد العرض التوضيحي للسمة';
-    case 'FR':
-      return 'Voir la démo du thème';
+    case "AR":
+      return "شاهد العرض التوضيحي للسمة";
+    case "FR":
+      return "Voir la démo du thème";
     default:
-      return 'View theme demo';
+      return "View theme demo";
   }
 });
 
@@ -73,10 +85,10 @@ const fetchCollections = async () => {
   try {
     const filter = {};
     if (collections.items.length > 0) {
-      items.value = collections.items;
+      items.value = splitArray(collections.items);
     } else {
       const { data } = await $storeino.collections.search(filter);
-      items.value = data.results;
+      items.value = splitArray(data.results);
     }
   } catch (err) {
     console.error({ err });
@@ -104,65 +116,31 @@ onMounted(() => {
     <!--  -->
     <div v-if="!loading && items.length > 0" class="flex flex-col gap-6">
       <!--  -->
-      <h3
+      <GlobalSectionHeader
         v-if="collections.title.length > 0"
-        class="text-xl lg:text-2xl font-extrabold title-font"
-      >
-        {{ collections.title }}
-      </h3>
-      <!--  -->
-
+        :content="collections.title"
+      />
       <!--  -->
       <ClientOnly>
         <!--  -->
-        <div class="relative">
-          <!--  -->
-          <swiper-container
-            :breakpoints="swiperBreakpoints"
-            :navigation="navigation"
-            :slides-per-view="6.5"
-            space-between="16"
-          >
-            <!--  -->
-            <swiper-slide v-for="(item, index) in items" :key="index">
-              <!--  -->
-              <ElementCollection :item="item" />
-              <!--  -->
-            </swiper-slide>
-            <!--  -->
-          </swiper-container>
-          <!--   -->
-
-          <!--  -->
-          <div class="navigation">
-            <!--  -->
-            <div
-              class="swiper-button-prev absolute top-[35%] left-0 transform -translate-y-1/2 z-10 bg-black/[.2] hover:bg-black/[.4] text-white rounded-full cursor-pointer p-2 mx-2 md:p-2 md:mx-4"
-            >
-              <!--  -->
-              <Icon
-                name="solar:arrow-left-linear"
-                class="flex items-center justify-center text-2xl translate"
-              />
-              <!--  -->
-            </div>
-            <!--  -->
-
-            <!--  -->
-            <div
-              class="swiper-button-next absolute top-[35%] right-0 transform -translate-y-1/2 z-10 bg-black/[.2] hover:bg-black/[.4] text-white rounded-full cursor-pointer p-2 mx-2 md:p-2 md:mx-4"
-            >
-              <!--  -->
-              <Icon
-                name="solar:arrow-right-linear"
-                class="flex items-center justify-center text-2xl translate"
-              />
-              <!--  -->
-            </div>
-            <!--  -->
-          </div>
-          <!--  -->
+        <div class="flex flex-col md:flex-row gap-3">
+          <ElementCollection
+            v-for="(item, index) in items[0]"
+            :key="index"
+            :item="item"
+            collectionHeightClass="h-[550px]"
+          />
         </div>
+
+        <div class="flex flex-col gap-3">
+          <ElementCollection
+            v-for="(item, index) in items[1]"
+            :key="index"
+            :item="item"
+            collectionHeightClass="h-[460px]"
+          />
+        </div>
+        <!--  -->
         <!--  -->
       </ClientOnly>
       <!--  -->

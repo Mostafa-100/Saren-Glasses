@@ -31,7 +31,7 @@ const logoSrc = computed(() => {
 
 <template>
   <NuxtLink to="/">
-    <h1 class="tracking-[20px] text-xl">{{ "SAREN" }}</h1>
+    <h1 class="tracking-[20px] text-xl">{{ storeName }}</h1>
     <!-- <h1 class="tracking-[20px] text-xl">{{ storeName }}</h1> -->
 
     <!-- <imageLoader

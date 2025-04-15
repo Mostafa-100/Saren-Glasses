@@ -56,10 +56,37 @@ X-Auth-Token: {{token}}
                 "brands": []
             },
             "ids": {
-                "collections": [],
-                "products": [],
+                "collections": [
+                    "67fe4c51841774a15ea9e6a8",
+                    "67fe4c43841774a15ea9e6a5",
+                    "67fe4c33841774a15ea9e6a2",
+                    "67fe4c21841774a15ea9e69f",
+                    "67fe4c11841774a15ea9e69c"
+                ],
+                "products": [
+                    "67fe47b6841774a15ea9e682",
+                    "67fd196e841774a15ea9e57a",
+                    "67f67c94841774a15ea9dbef",
+                    "67f67c92841774a15ea9dbe7",
+                    "67f67c8f841774a15ea9dbdf",
+                    "67f67b25841774a15ea9dba0",
+                    "67f67c8f841774a15ea9dbdf",
+                    "67f67c94841774a15ea9dbef",
+                    "67f67c92841774a15ea9dbe7",
+                    "67f67c8f841774a15ea9dbdf",
+                    "67f67b25841774a15ea9dba0",
+                    "67fd1a06841774a15ea9e588",
+                    "67fd196e841774a15ea9e57a"
+                ],
                 "images": [
-                    "67f96168841774a15ea9e0e4"
+                    "67fe82d4841774a15ea9e719",
+                    "67fe82d4841774a15ea9e71a",
+                    "67fe82d4841774a15ea9e71b",
+                    "67fe82d4841774a15ea9e71c",
+                    "67fe82d4841774a15ea9e718",
+                    "67fce894841774a15ea9e49f",
+                    "67fceb00841774a15ea9e4ae",
+                    "67fe7e8b841774a15ea9e70a"
                 ],
                 "menus": [
                     "67f67ebb841774a15ea9dc38",
@@ -1716,7 +1743,13 @@ X-Auth-Token: {{token}}
                                             "name": "collections",
                                             "path": "sections.collections.items",
                                             "type": "tc_collection",
-                                            "value": []
+                                            "value": [
+                                                "67fe4c51841774a15ea9e6a8",
+                                                "67fe4c43841774a15ea9e6a5",
+                                                "67fe4c33841774a15ea9e6a2",
+                                                "67fe4c21841774a15ea9e69f",
+                                                "67fe4c11841774a15ea9e69c"
+                                            ]
                                         }
                                     ]
                                 }
@@ -1805,7 +1838,14 @@ X-Auth-Token: {{token}}
                                             "name": "products",
                                             "path": "sections.products.items.item_0.items",
                                             "type": "tc_product",
-                                            "value": []
+                                            "value": [
+                                                "67fe47b6841774a15ea9e682",
+                                                "67fd196e841774a15ea9e57a",
+                                                "67f67c94841774a15ea9dbef",
+                                                "67f67c92841774a15ea9dbe7",
+                                                "67f67c8f841774a15ea9dbdf",
+                                                "67f67b25841774a15ea9dba0"
+                                            ]
                                         },
                                         {
                                             "name": "tags",
@@ -1992,6 +2032,60 @@ X-Auth-Token: {{token}}
                                         }
                                     ],
                                     "fixed": true
+                                },
+                                {
+                                    "name": "items[0]",
+                                    "values": [
+                                        {
+                                            "name": "image",
+                                            "note": "Recommended Dimensions (370 x 240) Pixel",
+                                            "path": "sections.banners.items.item_0.image",
+                                            "type": "tc_image",
+                                            "value": null
+                                        },
+                                        {
+                                            "name": "text_color",
+                                            "path": "sections.banners.items.item_0.text_color",
+                                            "type": "tc_color",
+                                            "value": "#333333"
+                                        },
+                                        {
+                                            "name": "title",
+                                            "path": "sections.banners.items.item_0.title",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "End of year decoration",
+                                            "translate": "End of year decoration"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections.banners.items.item_0.description",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "Make your home perfect",
+                                            "translate": "Make your home perfect"
+                                        },
+                                        {
+                                            "name": "show_button",
+                                            "path": "sections.banners.items.item_0.button.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "button_text",
+                                            "path": "sections.banners.items.item_0.button.text",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "Shop now",
+                                            "translate": "Shop now"
+                                        },
+                                        {
+                                            "name": "button_url",
+                                            "path": "sections.banners.items.item_0.button.url",
+                                            "type": "tc_input",
+                                            "value": "/shop"
+                                        }
+                                    ]
                                 }
                             ],
                             "pushable": true,
@@ -2076,7 +2170,7 @@ X-Auth-Token: {{token}}
                                             "name": "background_color",
                                             "path": "sections.services.colors.background_color",
                                             "type": "tc_color",
-                                            "value": "#e9e9e9"
+                                            "value": "#f1f1f1"
                                         },
                                         {
                                             "name": "text_color",
@@ -2095,16 +2189,16 @@ X-Auth-Token: {{token}}
                                             "path": "sections.services.content.title",
                                             "type": "tc_input",
                                             "translatable": true,
-                                            "value": "Our services",
-                                            "translate": "Our services"
+                                            "value": "",
+                                            "translate": ""
                                         },
                                         {
                                             "name": "description",
                                             "path": "sections.services.content.description",
                                             "type": "tc_input",
                                             "translatable": true,
-                                            "value": "Discover solutions crafted",
-                                            "translate": "Discover solutions crafted"
+                                            "value": "",
+                                            "translate": ""
                                         }
                                     ],
                                     "fixed": true
@@ -2116,27 +2210,175 @@ X-Auth-Token: {{token}}
                                             "name": "image",
                                             "path": "sections.services.items.item_0.image",
                                             "type": "tc_image",
-                                            "value": null
+                                            "value": "67fe82d4841774a15ea9e719"
                                         },
                                         {
                                             "name": "title",
                                             "path": "sections.services.items.item_0.title",
                                             "type": "tc_input",
                                             "translatable": true,
-                                            "value": "Best Quality",
-                                            "translate": "Best Quality"
+                                            "value": "FREE SHIPPING",
+                                            "translate": "FREE SHIPPING"
                                         },
                                         {
                                             "name": "description",
                                             "path": "sections.services.items.item_0.description",
                                             "type": "tc_input",
                                             "translatable": true,
-                                            "value": "Fast Delivery",
-                                            "translate": "Fast Delivery"
+                                            "value": "Enjoy complimentary shipping on all orders over $50. Fast, reliable, and hassle-free!",
+                                            "translate": "Enjoy complimentary shipping on all orders over $50. Fast, reliable, and hassle-free!"
                                         },
                                         {
                                             "name": "url",
                                             "path": "sections.services.items.item_0.url",
+                                            "type": "tc_input",
+                                            "value": "#"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "items[1]",
+                                    "values": [
+                                        {
+                                            "name": "image",
+                                            "path": "sections.services.items.item_1.image",
+                                            "type": "tc_image",
+                                            "value": "67fe82d4841774a15ea9e71a"
+                                        },
+                                        {
+                                            "name": "title",
+                                            "path": "sections.services.items.item_1.title",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "EASY RETURNS",
+                                            "frValue": "Livraison rapide",
+                                            "arValue": "التوصيل السريع",
+                                            "translate": "EASY RETURNS"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections.services.items.item_1.description",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "Not completely satisfied? No worries! Benefit from our 30-day easy return policy.",
+                                            "frValue": "Livraison rapide",
+                                            "arValue": "التوصيل السريع",
+                                            "translate": "Not completely satisfied? No worries! Benefit from our 30-day easy return policy."
+                                        },
+                                        {
+                                            "name": "url",
+                                            "path": "sections.services.items.item_1.url",
+                                            "type": "tc_input",
+                                            "value": "#"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "items[2]",
+                                    "values": [
+                                        {
+                                            "name": "image",
+                                            "path": "sections.services.items.item_2.image",
+                                            "type": "tc_image",
+                                            "value": "67fe82d4841774a15ea9e71b"
+                                        },
+                                        {
+                                            "name": "title",
+                                            "path": "sections.services.items.item_2.title",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "SECURE PAYMENTS",
+                                            "frValue": "Livraison rapide",
+                                            "arValue": "التوصيل السريع",
+                                            "translate": "SECURE PAYMENTS"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections.services.items.item_2.description",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "Shop confidently with our encrypted, secure payment methods.",
+                                            "frValue": "Livraison rapide",
+                                            "arValue": "التوصيل السريع",
+                                            "translate": "Shop confidently with our encrypted, secure payment methods."
+                                        },
+                                        {
+                                            "name": "url",
+                                            "path": "sections.services.items.item_2.url",
+                                            "type": "tc_input",
+                                            "value": "#"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "items[3]",
+                                    "values": [
+                                        {
+                                            "name": "image",
+                                            "path": "sections.services.items.item_3.image",
+                                            "type": "tc_image",
+                                            "value": "67fe82d4841774a15ea9e71c"
+                                        },
+                                        {
+                                            "name": "title",
+                                            "path": "sections.services.items.item_3.title",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "EXCLUSIVE DISCOUNTS",
+                                            "frValue": "Livraison rapide",
+                                            "arValue": "التوصيل السريع",
+                                            "translate": "EXCLUSIVE DISCOUNTS"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections.services.items.item_3.description",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "Join our newsletter for special offers, early access, and more.",
+                                            "frValue": "Livraison rapide",
+                                            "arValue": "التوصيل السريع",
+                                            "translate": "Join our newsletter for special offers, early access, and more."
+                                        },
+                                        {
+                                            "name": "url",
+                                            "path": "sections.services.items.item_3.url",
+                                            "type": "tc_input",
+                                            "value": "#"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "items[4]",
+                                    "values": [
+                                        {
+                                            "name": "image",
+                                            "path": "sections.services.items.item_4.image",
+                                            "type": "tc_image",
+                                            "value": "67fe82d4841774a15ea9e718"
+                                        },
+                                        {
+                                            "name": "title",
+                                            "path": "sections.services.items.item_4.title",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "CUSTOMER SUPPORT",
+                                            "frValue": "Livraison rapide",
+                                            "arValue": "التوصيل السريع",
+                                            "translate": "CUSTOMER SUPPORT"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections.services.items.item_4.description",
+                                            "type": "tc_input",
+                                            "translatable": true,
+                                            "value": "Our dedicated support team is here to assist you 24/7.",
+                                            "frValue": "Livraison rapide",
+                                            "arValue": "التوصيل السريع",
+                                            "translate": "Our dedicated support team is here to assist you 24/7."
+                                        },
+                                        {
+                                            "name": "url",
+                                            "path": "sections.services.items.item_4.url",
                                             "type": "tc_input",
                                             "value": "#"
                                         }
@@ -2379,7 +2621,7 @@ X-Auth-Token: {{token}}
                                             "path": "sections.hero.image",
                                             "type": "tc_image",
                                             "translatable": false,
-                                            "value": "67f96168841774a15ea9e0e4"
+                                            "value": "67fce894841774a15ea9e49f"
                                         },
                                         {
                                             "name": "description",
@@ -2467,7 +2709,7 @@ X-Auth-Token: {{token}}
                                             "path": "sections.selections.image",
                                             "type": "tc_image",
                                             "translatable": false,
-                                            "value": null
+                                            "value": "67fceb00841774a15ea9e4ae"
                                         }
                                     ]
                                 },
@@ -2501,7 +2743,9 @@ X-Auth-Token: {{token}}
                                             "path": "sections.selections.products",
                                             "type": "tc_product",
                                             "translatable": false,
-                                            "value": []
+                                            "value": [
+                                                "67f67c8f841774a15ea9dbdf"
+                                            ]
                                         }
                                     ]
                                 }
@@ -2554,7 +2798,96 @@ X-Auth-Token: {{token}}
                                             "path": "sections.styles.products",
                                             "type": "tc_product",
                                             "translatable": false,
-                                            "value": []
+                                            "value": [
+                                                "67f67c94841774a15ea9dbef",
+                                                "67f67c92841774a15ea9dbe7",
+                                                "67f67c8f841774a15ea9dbdf",
+                                                "67f67b25841774a15ea9dba0",
+                                                "67fd1a06841774a15ea9e588",
+                                                "67fd196e841774a15ea9e57a"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "location",
+                            "icon": "select_all",
+                            "blocks": [
+                                {
+                                    "name": "Display",
+                                    "values": [
+                                        {
+                                            "name": "Show location",
+                                            "note": "",
+                                            "path": "sections.location.active",
+                                            "type": "tc_checkbox",
+                                            "translatable": false,
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "Background color",
+                                            "note": "",
+                                            "path": "sections.location.background_color",
+                                            "type": "tc_color",
+                                            "translatable": false,
+                                            "value": "#f1f1f1"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Image",
+                                    "values": [
+                                        {
+                                            "name": "Select image",
+                                            "note": "",
+                                            "path": "sections.location.image",
+                                            "type": "tc_image",
+                                            "translatable": false,
+                                            "value": "67fe7e8b841774a15ea9e70a"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Content",
+                                    "values": [
+                                        {
+                                            "name": "Deader",
+                                            "note": "",
+                                            "path": "sections.location.content.header",
+                                            "type": "tc_input",
+                                            "translatable": false,
+                                            "value": "FIND A STORE - VISIT US IN PERSON"
+                                        },
+                                        {
+                                            "name": "Description",
+                                            "note": "",
+                                            "path": "sections.location.content.description",
+                                            "type": "tc_input",
+                                            "translatable": false,
+                                            "value": "Experience personalized service and explore our complete collection in person. Use our store locator to find a boutique near you and try on the styles that catch your eye. Discover the perfect fit with expert guidance from our team."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Customize button",
+                                    "values": [
+                                        {
+                                            "name": "Button text",
+                                            "note": "",
+                                            "path": "sections.location.button.text",
+                                            "type": "tc_input",
+                                            "translatable": false,
+                                            "value": "Find a Store"
+                                        },
+                                        {
+                                            "name": "Button link",
+                                            "note": "",
+                                            "path": "sections.location.button.link",
+                                            "type": "tc_input",
+                                            "translatable": false,
+                                            "value": "#"
                                         }
                                     ]
                                 }
@@ -4364,6 +4697,18 @@ X-Auth-Token: {{token}}
                             "value": "تسوق الآن"
                         },
                         {
+                            "name": "sections.banners.items.item_0.title",
+                            "value": "زينة نهاية العام"
+                        },
+                        {
+                            "name": "sections.banners.items.item_0.description",
+                            "value": "اجعل منزلك مثاليا"
+                        },
+                        {
+                            "name": "sections.banners.items.item_0.button.text",
+                            "value": "تسوق الآن"
+                        },
+                        {
                             "name": "sections.services.content.title",
                             "value": "خدماتنا"
                         },
@@ -4973,6 +5318,18 @@ X-Auth-Token: {{token}}
                             "value": "Achetez maintenant"
                         },
                         {
+                            "name": "sections.banners.items.item_0.title",
+                            "value": "Decoration de fin d'année"
+                        },
+                        {
+                            "name": "sections.banners.items.item_0.description",
+                            "value": "Rendez votre maison parfaite"
+                        },
+                        {
+                            "name": "sections.banners.items.item_0.button.text",
+                            "value": "Achetez maintenant"
+                        },
+                        {
                             "name": "sections.services.content.title",
                             "value": "Nos services"
                         },
@@ -5484,12 +5841,19 @@ X-Auth-Token: {{token}}
                     "items": {
                         "item_0": {
                             "active": true,
-                            "title": "Happy Deals",
-                            "description": "Do not miss the current offers.",
+                            "title": "BEST SELLERS - LOVED BY MANY",
+                            "description": "Explore our best-selling eyewear, chosen by customers who prioritize quality and style.",
                             "show_more_text": "See all Products",
                             "show_more_url": "/shop",
                             "collections": [],
-                            "items": [],
+                            "items": [
+                                "67fe47b6841774a15ea9e682",
+                                "67fd196e841774a15ea9e57a",
+                                "67f67c94841774a15ea9dbef",
+                                "67f67c92841774a15ea9dbe7",
+                                "67f67c8f841774a15ea9dbdf",
+                                "67f67b25841774a15ea9dba0"
+                            ],
                             "tags": ""
                         }
                     }
@@ -5684,7 +6048,13 @@ X-Auth-Token: {{token}}
                     },
                     "title": "Top collections",
                     "count_text": "Items",
-                    "items": []
+                    "items": [
+                        "67fe4c51841774a15ea9e6a8",
+                        "67fe4c43841774a15ea9e6a5",
+                        "67fe4c33841774a15ea9e6a2",
+                        "67fe4c21841774a15ea9e69f",
+                        "67fe4c11841774a15ea9e69c"
+                    ]
                 },
                 "banners": {
                     "active": true,
@@ -5699,7 +6069,7 @@ X-Auth-Token: {{token}}
                     "items": {
                         "item_0": {
                             "image": null,
-                            "text_color": "#ffffff",
+                            "text_color": "#333333",
                             "title": "End of year decoration",
                             "description": "Make your home perfect",
                             "button": {
@@ -5713,7 +6083,7 @@ X-Auth-Token: {{token}}
                 "services": {
                     "active": true,
                     "colors": {
-                        "background_color": "#e9e9e9",
+                        "background_color": "#f1f1f1",
                         "text_color": "#0f0f0f"
                     },
                     "content": {
@@ -5722,8 +6092,32 @@ X-Auth-Token: {{token}}
                     },
                     "items": {
                         "item_0": {
-                            "image": null,
+                            "image": "67fe82d4841774a15ea9e719",
                             "title": "Best Quality",
+                            "description": "Fast Delivery",
+                            "url": "#"
+                        },
+                        "item_1": {
+                            "image": "67fe82d4841774a15ea9e71a",
+                            "title": "Fast Delivery",
+                            "description": "Fast Delivery",
+                            "url": "#"
+                        },
+                        "item_2": {
+                            "image": "67fe82d4841774a15ea9e71b",
+                            "title": "Fast Delivery",
+                            "description": "Fast Delivery",
+                            "url": "#"
+                        },
+                        "item_3": {
+                            "image": "67fe82d4841774a15ea9e71c",
+                            "title": "Fast Delivery",
+                            "description": "Fast Delivery",
+                            "url": "#"
+                        },
+                        "item_4": {
+                            "image": "67fe82d4841774a15ea9e718",
+                            "title": "Fast Delivery",
                             "description": "Fast Delivery",
                             "url": "#"
                         }
@@ -5767,7 +6161,7 @@ X-Auth-Token: {{token}}
                     }
                 },
                 "hero": {
-                    "image": "67f96168841774a15ea9e0e4",
+                    "image": "67fce894841774a15ea9e49f",
                     "description": "Whether you're looking to make a bold statement or keep it subtle and sophisticated, our exclusive pieces have something for every style. Discover timeless designs and cutting-edge frames that enhance your individuality.",
                     "header": "DISCOVER OUR SIGNATURE EYEWEAR COLLECTION",
                     "learn_more_button_text": "Learn More",
@@ -5778,12 +6172,14 @@ X-Auth-Token: {{token}}
                 },
                 "selections": {
                     "active": true,
-                    "image": null,
+                    "image": "67fceb00841774a15ea9e4ae",
                     "content": {
                         "title": "ELEVATE YOUR STYLE",
                         "description": "Step into the spotlight with our featured collection. Each pair is designed to blend comfort with innovation, perfect for trendsetters and timeless enthusiasts alike. Express yourself with lenses that reflect your personality and frames that complement your unique style."
                     },
-                    "products": null
+                    "products": [
+                        "67f67c8f841774a15ea9dbdf"
+                    ]
                 },
                 "styles": {
                     "active": true,
@@ -5791,7 +6187,27 @@ X-Auth-Token: {{token}}
                         "header": "FIND YOUR PERFECT MATCH",
                         "description": "Browse through our curated selection to find the ideal pair that suits your lifestyle:"
                     },
-                    "products": null
+                    "products": [
+                        "67f67c94841774a15ea9dbef",
+                        "67f67c92841774a15ea9dbe7",
+                        "67f67c8f841774a15ea9dbdf",
+                        "67f67b25841774a15ea9dba0",
+                        "67fd1a06841774a15ea9e588",
+                        "67fd196e841774a15ea9e57a"
+                    ]
+                },
+                "location": {
+                    "active": true,
+                    "background_color": "#f1f1f1",
+                    "image": "67fe7e8b841774a15ea9e70a",
+                    "content": {
+                        "header": "FIND A STORE - VISIT US IN PERSON",
+                        "description": "Experience personalized service and explore our complete collection in person. Use our store locator to find a boutique near you and try on the styles that catch your eye. Discover the perfect fit with expert guidance from our team."
+                    },
+                    "button": {
+                        "text": "Find a Store",
+                        "link": "#"
+                    }
                 },
                 "shop": {
                     "sidebar": {

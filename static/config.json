@@ -5614,6 +5614,19 @@
             "description": "Step into the spotlight with our featured collection. Each pair is designed to blend comfort with innovation, perfect for trendsetters and timeless enthusiasts alike. Express yourself with lenses that reflect your personality and frames that complement your unique style."
           },
           "products": []
+        },
+        "location": {
+          "active": true,
+          "background_color": "#f1f1f1",
+          "image": null,
+          "content": {
+            "header": "FIND A STORE - VISIT US IN PERSON",
+            "description": "Experience personalized service and explore our complete collection in person. Use our store locator to find a boutique near you and try on the styles that catch your eye. Discover the perfect fit with expert guidance from our team."
+          },
+          "button": {
+            "text": "Find a Store",
+            "link": "your value"
+          }
         }
       }
     }

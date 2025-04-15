@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useNuxtApp } from '#app';
+import { ref } from "vue";
+import { useNuxtApp } from "#app";
 
 const { $settings } = useNuxtApp();
 
@@ -28,8 +28,6 @@ const textColor = ref(footer.colors.text_color);
           <FooterSocialMedia :footer="footer" />
           <!--  -->
 
-          <!--  -->
-          <FooterPhone :call-us="footer.call_us" :text-color="textColor" />
           <!--  -->
         </div>
         <!--  -->

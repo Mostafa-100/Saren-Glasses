@@ -7,8 +7,16 @@ import Selections from "~/components/home/Selections.vue";
 const $store = useMainStore();
 
 const { $settings, $storeino, $tools }: any = useNuxtApp();
-const { carousel, collections, products, offers, hero, styles, selections } =
-  $settings.sections;
+const {
+  carousel,
+  collections,
+  products,
+  offers,
+  hero,
+  styles,
+  selections,
+  location,
+} = $settings.sections;
 
 const productsItems = computed(() => {
   return products?.items ? Object.values(products.items) : [];
@@ -28,7 +36,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="home-page mb-8 md:mb-14 lg:mb-16">
+  <div class="home-page">
     <!-- Carousel -->
     <!-- <HomeSlider v-if="carousel.active" /> -->
     <HomeHero v-if="hero.active" />
@@ -53,17 +61,14 @@ onMounted(() => {
       />
     </template>
 
-    <!-- Banners -->
-    <HomeBanners />
+    <!-- Collections -->
+    <HomeCollections v-if="collections.active" />
+
+    <!-- Location -->
+    <HomeLocation v-if="location.active" />
 
     <!-- Services -->
     <HomeServices />
-
-    <!-- brands -->
-    <HomeBrands />
-
-    <!-- Posts -->
-    <HomePosts />
 
     <!--  -->
     <div class="container">

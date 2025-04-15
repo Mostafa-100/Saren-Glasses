@@ -22,7 +22,7 @@ const textColor = copyright.colors.text_color;
       <div v-if="description.length > 0" class="container py-6">
         <!--  -->
         <div
-          class="text-sm font-medium"
+          class="text-sm font-light"
           v-html="description.replace(/__YEAR__/gi, year)"
         ></div>
         <!--  -->
