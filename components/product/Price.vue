@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from "vue";
 
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from "@/stores/main";
 const $store = useMainStore();
 
 const props: any = defineProps({
@@ -18,13 +18,13 @@ const props: any = defineProps({
 const currency = $store.currency;
 
 const minPrice: any = computed(() =>
-  props.type === 'variable'
+  props.type === "variable"
     ? Math.min(...props.variants.map((va: any) => va.price.salePrice))
     : 0
 );
 
 const maxPrice: any = computed(() =>
-  props.type === 'variable'
+  props.type === "variable"
     ? Math.max(...props.variants.map((va: any) => va.price.salePrice))
     : 0
 );
@@ -37,7 +37,7 @@ const formatPrice = computed(
 );
 
 const decimalPrice = computed(
-  () => (price: any) => ((price % 1) * 100).toFixed(0).padStart(2, '0')
+  () => (price: any) => ((price % 1) * 100).toFixed(0).padStart(2, "0")
 );
 </script>
 
@@ -60,20 +60,11 @@ const decimalPrice = computed(
     <div class="flex items-center text-secondary gap-0.5">
       <!--  -->
       <span :class="props.priceStyle">{{
-        formatPrice(props.price.salePrice)
+        formatPrice(props.price.salePrice) +
+        "." +
+        decimalPrice(props.price.salePrice) +
+        currency.symbol
       }}</span>
-      <!--  -->
-
-      <!--  -->
-      <div class="flex flex-col justify-center" :class="props.currencyStyle">
-        <!--  -->
-        <span>{{ decimalPrice(props.price.salePrice) }}</span>
-        <!--  -->
-
-        <!--  -->
-        <span>{{ currency.symbol }}</span>
-        <!--  -->
-      </div>
       <!--  -->
     </div>
     <!--  -->

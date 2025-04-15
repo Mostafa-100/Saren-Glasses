@@ -62,6 +62,7 @@ onMounted(() => {
 
     <!--  -->
     <div
+      class="z-50"
       :style="{
         backgroundColor: scrolled ? bgColor : currentBgColor,
         color: textColor,

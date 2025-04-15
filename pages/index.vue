@@ -2,11 +2,12 @@
 import { computed } from "vue";
 import { useNuxtApp } from "#app";
 import { useMainStore } from "@/stores/main";
+import Selections from "~/components/home/Selections.vue";
 
 const $store = useMainStore();
 
 const { $settings, $storeino, $tools }: any = useNuxtApp();
-const { carousel, collections, products, offers, hero, styles } =
+const { carousel, collections, products, offers, hero, styles, selections } =
   $settings.sections;
 
 const productsItems = computed(() => {
@@ -37,6 +38,7 @@ onMounted(() => {
 
     <!-- Styles -->
     <HomeStyles v-if="styles.active" />
+    <HomeSelections v-if="selections.active" />
 
     <!-- Home Events -->
     <!-- <HomeEvents />   -->

@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { ref, onMounted, watch, nextTick, computed } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { ref, onMounted, watch, nextTick, computed } from "vue";
+import { useMainStore } from "@/stores/main";
 
 const $store = useMainStore();
-const emit = defineEmits(['click']);
+const emit = defineEmits(["click"]);
 
 const props = defineProps({
   alt: {
     type: String,
-    default: 'No alt found',
+    default: "No alt found",
   },
   src: {
     type: String,
     default:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4',
+      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4",
   },
   property: {
     type: String,
@@ -29,25 +29,25 @@ const props = defineProps({
   },
 });
 
-const id = ref('_' + (Math.random() * 10000).toFixed(0));
-const newSrc = ref('');
+const id = ref("_" + (Math.random() * 10000).toFixed(0));
+const newSrc = ref("");
 const isLoading = ref(true);
 const empty = computed(() => props.default || $store.defaults.noImage);
 
 const init = async () => {
   isLoading.value = true;
-  id.value = '_' + (Math.random() * 10000).toFixed(0);
+  id.value = "_" + (Math.random() * 10000).toFixed(0);
   await nextTick();
 
   const element: any = document.getElementById(id.value);
-  let property = 'Width';
+  let property = "Width";
 
   if (!element) {
     return;
   }
 
   if (element.clientHeight > element.clientWidth) {
-    property = 'Height';
+    property = "Height";
   }
 
   if (props.property) {

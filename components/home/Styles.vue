@@ -15,8 +15,6 @@ function chunkArray(arr, size) {
   }
   return result;
 }
-
-console.log("Styles: ", styles);
 </script>
 
 <template>

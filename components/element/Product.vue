@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { ref, onMounted } from "vue";
+import { useMainStore } from "@/stores/main";
 
 const props: any = defineProps({
-  page: { type: String, require: false, default: 'home' },
+  page: { type: String, require: false, default: "home" },
   upsell: { type: Object, default: null },
   item: Object,
+  textColorClass: {
+    type: String,
+    default: "",
+  },
 });
 
 const { $settings, $storeino, $tools }: any = useNuxtApp();
@@ -29,7 +33,7 @@ const collections = ref(props.item.collections);
 const reference = ref(props.item.reference);
 
 const variant = ref(
-  props.item.type === 'variant' ? props.item.variants?.[0] : null
+  props.item.type === "variant" ? props.item.variants?.[0] : null
 );
 
 const quantity = ref(props.item.quantity);
@@ -52,7 +56,7 @@ const stockColor = computed(() =>
 );
 
 onMounted(() => {
-  if (props.item.type === 'simple') {
+  if (props.item.type === "simple") {
     handleSimpleProduct();
   } else {
     handleVariantProduct();
@@ -62,7 +66,7 @@ onMounted(() => {
 const handleSimpleProduct = () => {
   if (discount.value) {
     props.item.originalPrice = $tools.copy(props.item.price);
-    if (discount.value.type === 'percentage') {
+    if (discount.value.type === "percentage") {
       props.item.price.salePrice =
         props.item.price.salePrice -
         (props.item.price.salePrice * discount.value.value) / 100;
@@ -83,7 +87,7 @@ const handleVariantProduct = () => {
   if (discount.value) {
     props.item.variants?.forEach((variant: any) => {
       variant.originalPrice = $tools.copy(variant.price);
-      if (discount.value?.type === 'percentage') {
+      if (discount.value?.type === "percentage") {
         variant.price.salePrice =
           variant.price.salePrice -
           (variant.price.salePrice * discount.value.value) / 100;
@@ -102,7 +106,7 @@ const handleVariantProduct = () => {
 };
 
 const checkOutOfStock = () => {
-  if (props.item.type === 'simple') {
+  if (props.item.type === "simple") {
     outOfStock.value =
       !props.item.outStock.disabled && props.item.quantity.instock <= 0;
   } else {
@@ -124,23 +128,23 @@ const addToCart = () => {
     upsell: props.upsell,
   };
 
-  $tools.call('ADD_TO_CART', item);
+  $tools.call("ADD_TO_CART", item);
   $tools.toast(alerts.value.cart.added_text);
 
   if (products.add_to_cart.to_checkout) {
     setTimeout(() => {
-      window.location.href = '/checkout2';
+      window.location.href = "/checkout2";
     }, 500);
   }
 
-  $storeino.fbpx('AddToCart', {
+  $storeino.fbpx("AddToCart", {
     content_name: props.item.name,
     content_ids: [props.item._id],
-    content_type: 'product',
+    content_type: "product",
     value: variant.value
       ? variant.value.price.salePrice
       : props.item.price.salePrice,
-    currency: $store.currency?.code || 'USD',
+    currency: $store.currency?.code || "USD",
   });
 };
 
@@ -153,12 +157,12 @@ const toggleWishlist = () => {
 };
 
 const addToWishlist = () => {
-  $tools.call('ADD_TO_WISHLIST', props.item);
+  $tools.call("ADD_TO_WISHLIST", props.item);
   $tools.toast(alerts.value.wishlist.added_text);
 };
 
 const removeFromWishlist = () => {
-  $tools.call('REMOVE_FROM_WISHLIST', props.item);
+  $tools.call("REMOVE_FROM_WISHLIST", props.item);
   $tools.toast(alerts.value.wishlist.removed_text);
 };
 </script>
@@ -171,7 +175,7 @@ const removeFromWishlist = () => {
   >
     <!--  -->
     <div
-      :class="props.page == 'shop' ? 'w-1/3 pb-[35%]' : 'w-full pb-full'"
+      :class="props.page == 'shop' ? '' : 'w-full'"
       class="w-1/3 wishlist relative overflow-hidden shadow"
     >
       <!--  -->
@@ -179,11 +183,11 @@ const removeFromWishlist = () => {
         :to="`/products/${props.item.slug}`"
         :title="props.item.name"
         :aria-label="props.item.name"
-        class="absolute inset-0"
+        class=""
       >
         <!--  -->
         <ImageLoader
-          img-class="object-cover w-full h-full"
+          img-class="object-cover w-[400px] h-full"
           :src="props.item.images.length > 0 ? props.item.images[0].src : null"
           :alt="props.item.name"
         />
@@ -192,30 +196,7 @@ const removeFromWishlist = () => {
       <!--  -->
 
       <!--  -->
-      <div
-        v-if="products.add_to_wishlist.active"
-        :class="page == 'wishlist' ? 'opacity-1' : 'opacity-0'"
-        class="wishlist-icon"
-      >
-        <!--  -->
-        <transition name="fade">
-          <button
-            :title="isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'"
-            :class="page == 'wishlist' ? 'bottom-2' : 'bottom-0'"
-            class="h-9 w-9 flex items-center justify-center absolute z-10 right-2 rounded-full bg-white text-secondary shadow hover:bg-secondary hover:text-white transition-all duration-300"
-            @click="toggleWishlist"
-          >
-            <!--  -->
-            <Icon
-              :name="isInWishlist ? 'solar:heart-bold' : 'solar:heart-linear'"
-              class="flex items-center justify-center text-2xl"
-            />
-            <!--  -->
-          </button>
-          <!--  -->
-        </transition>
-        <!--  -->
-      </div>
+
       <!--  -->
 
       <!--  -->
@@ -245,179 +226,12 @@ const removeFromWishlist = () => {
         <!--  -->
         <NuxtLink
           :to="`/products/${props.item.slug}`"
-          class="text-s font-medium leading-5 overflow-hidden text-ellipsis whitespace-normal line-clamp-3"
+          :class="`text-[14px] font-[600] uppercase leading-5 overflow-hidden ${textColorClass} text-ellipsis whitespace-normal line-clamp-3`"
         >
           {{ props.item.name }}
         </NuxtLink>
         <!--  -->
 
-        <!--  -->
-        <div v-if="products.reviews.active" class="flex gap-1.5 items-center">
-          <!--  -->
-          <div class="flex items-center gap-1">
-            <Icon
-              v-for="star in 5"
-              :key="star"
-              :name="
-                star <= props.item.review.rating
-                  ? 'solar:star-bold'
-                  : 'solar:star-linear'
-              "
-              :style="{
-                color:
-                  star <= props.item.review.rating
-                    ? reviewsActiveColor
-                    : reviewsInActiveColor,
-              }"
-              class="flex items-center justify-center text-base"
-            />
-          </div>
-
-          <!--  -->
-          <span class="text-s font-medium align-middle text-secondary"
-            >( {{ props.item.review.reviews.length }} )</span
-          >
-          <!--  -->
-        </div>
-        <!--  -->
-
-        <!--  -->
-        <div
-          v-if="products.reference.active && reference"
-          class="flex items-center"
-        >
-          <!--  -->
-          <span class="text-s font-medium capitalize">
-            {{ `${products.reference.text} : ` }}
-            <!--  -->
-            <NuxtLink
-              :to="`/shop/?ref=${reference}`"
-              class="font-normal hover:text-secondary"
-              >{{ reference }}</NuxtLink
-            >
-            <!--  -->
-          </span>
-          <!--  -->
-        </div>
-        <!--  -->
-
-        <!--  -->
-        <div
-          v-if="products.collections.active && collections.length > 0"
-          class="flex items-center"
-        >
-          <!--  -->
-          <span class="text-s font-medium capitalize"
-            >{{ `${products.collections.text} : ` }}
-            <!--  -->
-            <NuxtLink
-              v-for="(collection, index) in collections"
-              :key="index"
-              :to="`/shop/${collection.name}`"
-              class="font-normal hover:text-secondary"
-              >{{ collection.name }}</NuxtLink
-            >
-            <!--  -->
-          </span>
-          <!--  -->
-        </div>
-        <!--  -->
-
-        <!--  -->
-        <div
-          v-if="products.tags.active && tags.length > 0"
-          class="flex items-center"
-        >
-          <!--  -->
-          <span class="text-s font-medium capitalize">
-            {{ `${products.tags.text} : ` }}
-            <!--  -->
-            <NuxtLink
-              v-for="(tag, index) in tags"
-              :key="index"
-              class="font-normal hover:text-secondary"
-              >{{ tag }}</NuxtLink
-            >
-            <!--  -->
-          </span>
-          <!--  -->
-        </div>
-        <!--  -->
-
-        <!--  -->
-        <div v-if="brand && products.brand.active" class="flex items-center">
-          <!--  -->
-          <span class="text-s font-medium capitalize">
-            {{ `${products.brand.text} : ` }}
-
-            <NuxtLink
-              :to="`/shop/?brands=${brand.slug}`"
-              class="font-normal hover:text-secondary"
-            >
-              {{ brand.name }}
-            </NuxtLink>
-            <!--  -->
-          </span>
-          <!--  -->
-        </div>
-        <!--  -->
-
-        <!--  -->
-        <div
-          v-if="sizes.weight && products.weight.active"
-          class="flex items-center"
-        >
-          <!--  -->
-          <span class="text-s font-medium capitalize">
-            {{ `${products.weight.text} : ` }}
-            <!--  -->
-            <span class="font-normal">
-              {{ sizes.weight.value + sizes.weight.unit }}
-            </span>
-            <!--  -->
-          </span>
-          <!--  -->
-        </div>
-        <!--  -->
-
-        <!--  -->
-        <div
-          v-if="sizes.volume && products.volume.active"
-          class="flex items-center"
-        >
-          <!--  -->
-          <span class="text-s font-medium capitalize">
-            {{ `${products.volume.text} : ` }}
-            <!--  -->
-            <span class="font-normal">
-              {{ sizes.volume.value + sizes.volume.unit }}
-            </span>
-            <!--  -->
-          </span>
-          <!--  -->
-        </div>
-        <!--  -->
-
-        <!--  -->
-        <div
-          v-if="sizes.dimensions && products.dimensions.active"
-          class="flex items-center"
-        >
-          <!--  -->
-          <span class="text-s font-medium capitalize">
-            {{ `${products.dimensions.text} : ` }}
-            <!--  -->
-            <span class="font-normal">
-              {{
-                `${sizes.dimensions.width + sizes.dimensions.unit},
-              ${sizes.dimensions.height + sizes.dimensions.unit},
-              ${sizes.dimensions.depth + sizes.dimensions.unit}`
-              }}
-            </span>
-            <!--  -->
-          </span>
-          <!--  -->
-        </div>
         <!--  -->
       </div>
       <!--  -->
@@ -437,9 +251,8 @@ const removeFromWishlist = () => {
             :type="props.item.type"
             :price="props.item.price"
             :variants="props.item.variants"
-            price-style="text-lg font-black"
-            currency-style="text-x font-bold leading-[0.6rem]"
-            sub-price-style="text-sm font-normal"
+            :price-style="`text-sm font-light ${textColorClass}`"
+            :sub-price-style="`text-sm font-normal ${textColorClass}`"
           />
           <!--  -->
 
@@ -452,7 +265,7 @@ const removeFromWishlist = () => {
             <span class="text-xs font-normal"
               >-{{ discount.value }}
               {{
-                discount.type == 'percentage' ? '%' : $store.currency.symbol
+                discount.type == "percentage" ? "%" : $store.currency.symbol
               }}</span
             >
             <!--  -->
@@ -462,49 +275,74 @@ const removeFromWishlist = () => {
         <!--  -->
 
         <!--  -->
-        <div
-          v-if="products.add_to_cart.active"
-          class="flex flex-col items-end justify-center"
-        >
-          <!--  -->
-          <button
-            v-if="
-              !outOfStock &&
-              props.item.type == 'simple' &&
-              props.item.price.salePrice > 0
-            "
-            class="h-9 w-9 flex items-center justify-center rounded-full border border-secondary bg-secondary text-white hover:bg-transparent hover:text-secondary transition-all duration-300"
-            @click="addToCart()"
+        <div class="flex gap-x-1">
+          <div
+            v-if="products.add_to_wishlist.active"
+            :class="page == 'wishlist' ? 'opacity-1' : 'opacity-1'"
+            class="wishlist-icon"
           >
             <!--  -->
-            <Icon name="solar:cart-large-2-linear" class="text-2xl translate" />
+            <button
+              :title="isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'"
+              class="h-9 w-9 flex items-center justify-center rounded-full text-secondary shadow hover:text-white transition-all duration-300"
+              @click="toggleWishlist"
+            >
+              <!--  -->
+              <Icon
+                :name="isInWishlist ? 'solar:heart-bold' : 'solar:heart-linear'"
+                :class="`flex items-center justify-center text-lg ${textColorClass}`"
+              />
+              <!--  -->
+            </button>
             <!--  -->
-          </button>
-          <!--  -->
+          </div>
+          <div
+            v-if="products.add_to_cart.active"
+            class="flex flex-col items-end justify-center"
+          >
+            <!--  -->
+            <button
+              v-if="
+                !outOfStock &&
+                props.item.type == 'simple' &&
+                props.item.price.salePrice > 0
+              "
+              class="h-9 w-9 flex items-center justify-center rounded-full text-white hover:text-secondary transition-all duration-300"
+              @click="addToCart()"
+            >
+              <!--  -->
+              <Icon
+                name="solar:cart-large-2-linear"
+                :class="`text-lg translate ${textColorClass}`"
+              />
+              <!--  -->
+            </button>
+            <!--  -->
 
-          <!--  -->
-          <NuxtLink
-            v-if="!outOfStock && props.item.type == 'variable'"
-            :to="`/products/${props.item.slug}`"
-            class="h-9 w-9 flex items-center justify-center rounded-full border border-secondary bg-secondary text-white hover:bg-transparent hover:text-secondary transition-all duration-300"
-          >
             <!--  -->
-            <Icon name="solar:eye-linear" class="text-2xl translate" />
+            <NuxtLink
+              v-if="!outOfStock && props.item.type == 'variable'"
+              :to="`/products/${props.item.slug}`"
+              class="h-9 w-9 flex items-center justify-center rounded-full border border-secondary bg-secondary text-white hover:bg-transparent hover:text-secondary transition-all duration-300"
+            >
+              <!--  -->
+              <Icon name="solar:eye-linear" class="text-lg translate" />
+              <!--  -->
+            </NuxtLink>
             <!--  -->
-          </NuxtLink>
-          <!--  -->
 
-          <!--  -->
-          <NuxtLink
-            v-if="outOfStock"
-            :to="`/products/${props.item.slug}`"
-            class="h-9 w-9 flex items-center justify-center rounded-full border border-secondary bg-secondary text-white hover:bg-transparent hover:text-secondary transition-all duration-300"
-          >
             <!--  -->
-            <Icon name="solar:eye-linear" class="text-2xl translate" />
+            <NuxtLink
+              v-if="outOfStock"
+              :to="`/products/${props.item.slug}`"
+              class="h-9 w-9 flex items-center justify-center rounded-full border border-secondary bg-secondary text-white hover:bg-transparent hover:text-secondary transition-all duration-300"
+            >
+              <!--  -->
+              <Icon name="solar:eye-linear" class="text-2xl translate" />
+              <!--  -->
+            </NuxtLink>
             <!--  -->
-          </NuxtLink>
-          <!--  -->
+          </div>
         </div>
         <!--  -->
       </div>
