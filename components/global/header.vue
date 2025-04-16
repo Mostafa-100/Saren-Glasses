@@ -32,22 +32,6 @@ const firstLetters = (firstName: string, lastName: string) => {
   return `${firstName[0]}.${lastName[0]}`.toUpperCase();
 };
 
-// if window scroll > 0px then set color to header
-const scrolled = ref(false);
-
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
-
-function handleScroll() {
-  scrolled.value = window.scrollY > 0;
-  console.log(scrolled.value);
-}
-
 onMounted(() => {
   customer.value = $store.customer?.customer || null;
 });
@@ -55,7 +39,7 @@ onMounted(() => {
 
 <template>
   <!--  -->
-  <div class="header fixed top-0 w-full z-[9999]">
+  <div class="header absolute top-0 w-full z-[9999]">
     <!--  -->
     <appsLoader placement="BEFORE_HEADER" />
     <!--  -->
@@ -64,7 +48,7 @@ onMounted(() => {
     <div
       class="z-50"
       :style="{
-        backgroundColor: scrolled ? bgColor : currentBgColor,
+        backgroundColor: currentBgColor,
         color: textColor,
       }"
     >
