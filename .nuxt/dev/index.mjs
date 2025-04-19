@@ -168,23 +168,6 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const script = `
-if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
-  Object.defineProperty(window, '__NUXT_DEVTOOLS_TIME_METRIC__', {
-    value: {},
-    enumerable: false,
-    configurable: true,
-  })
-}
-window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
-`;
-
-const _5SdVJPQXWu = (function(nitro) {
-  nitro.hooks.hook("render:html", (htmlContext) => {
-    htmlContext.head.push(`<script>${script}<\/script>`);
-  });
-});
-
 const rootDir = "C:/Users/Mostafa/Desktop/my-theme";
 
 const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"format-detection","content":"telephone=no"}],"link":[],"style":[],"script":[],"noscript":[],"title":"marketmall-theme"};
@@ -274,8 +257,7 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _5SdVJPQXWu,
-_rSNo22QEfi
+  _rSNo22QEfi
 ];
 
 const expressMiddleware = express.Router();

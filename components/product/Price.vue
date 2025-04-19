@@ -15,6 +15,8 @@ const props: any = defineProps({
   currencyStyle: String,
 });
 
+console.log("Price", props.price);
+
 const currency = $store.currency;
 
 const minPrice: any = computed(() =>
@@ -43,11 +45,7 @@ const decimalPrice = computed(
 
 <template>
   <!--  -->
-  <span
-    v-if="type == 'simple'"
-    class="flex flex-col"
-    :class="{ 'items-center': props.page == 'product' }"
-  >
+  <span v-if="type == 'simple'" class="flex flex-col">
     <!--  -->
     <meta itemprop="priceCurrency" :content="currency.code" />
     <!--  -->
@@ -57,7 +55,7 @@ const decimalPrice = computed(
     <!--  -->
 
     <!--  -->
-    <div class="flex items-center text-secondary gap-0.5">
+    <div class="flex items-center gap-0.5">
       <!--  -->
       <span :class="props.priceStyle">{{
         formatPrice(props.price.salePrice) +
@@ -98,7 +96,7 @@ const decimalPrice = computed(
     <!--  -->
 
     <!--  -->
-    <div class="flex items-center text-secondary gap-0.5">
+    <div class="flex items-center gap-0.5">
       <!--  -->
       <span :class="props.priceStyle">{{ formatPrice(minPrice) }}</span>
       <!--  -->
@@ -121,16 +119,13 @@ const decimalPrice = computed(
     <!--  -->
 
     <!--  -->
-    <span
-      class="flex items-center justify-center text-secondary"
-      :class="props.priceStyle"
-    >
+    <span class="flex items-center justify-center" :class="props.priceStyle">
       ~
     </span>
     <!--  -->
 
     <!--  -->
-    <div class="flex items-center text-secondary gap-0.5">
+    <div class="flex items-center gap-0.5">
       <!--  -->
       <span :class="props.priceStyle">{{ formatPrice(maxPrice) }}</span>
       <!--  -->
@@ -169,7 +164,7 @@ const decimalPrice = computed(
     <!--  -->
 
     <!--  -->
-    <div class="flex items-center text-secondary gap-0.5">
+    <div class="flex items-center gap-0.5">
       <!--  -->
       <span :class="props.priceStyle">{{
         formatPrice(props.variants[0].price.salePrice)

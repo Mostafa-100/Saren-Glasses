@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // import * as Sentry from '@sentry/nuxt';
 
-import { reactive, onMounted, watch } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { reactive, onMounted, watch } from "vue";
+import { useMainStore } from "@/stores/main";
 
 const { $settings, $storeino, $tools }: any = useNuxtApp();
 const $store = useMainStore();
@@ -46,7 +46,7 @@ const initCart = async () => {
   if (ids.length > 0) {
     try {
       const response = await $storeino.products.search({
-        '_id-in': ids,
+        "_id-in": ids,
         limit: 1000,
       });
 
@@ -66,7 +66,7 @@ const initCart = async () => {
           name: product.name,
           price: product.price.salePrice,
           quantity: JSON.parse(JSON.stringify(product.quantity)),
-          image: product.images.length > 0 ? product.images[0].src : '',
+          image: product.images.length > 0 ? product.images[0].src : "",
           total: 0, // Initialize total
         };
 
@@ -88,7 +88,7 @@ const initCart = async () => {
         if (item.upsell) {
           cartItem.upsell = item.upsell;
           const discount =
-            cartItem.upsell.type === 'percentage'
+            cartItem.upsell.type === "percentage"
               ? cartItem.price * (cartItem.upsell.value / 100)
               : cartItem.upsell.value;
           cartItem.price -= discount;
@@ -101,7 +101,7 @@ const initCart = async () => {
 
       calcTotal();
     } catch (err) {
-      console.error('Error initializing cart:', err);
+      console.error("Error initializing cart:", err);
       // Sentry.captureException(err);
     }
   }
@@ -116,13 +116,13 @@ const getUpsells = async () => {
   if (ids.length > 0) {
     try {
       const response = await $storeino.upsells.search({
-        with: ['products'],
-        'product._id-in': ids,
+        with: ["products"],
+        "product._id-in": ids,
         limit: 1000,
       });
       state.upsells = response.data.results;
     } catch (err) {
-      console.log('🚀 ~ getUpsells ~ err:', err);
+      console.log("🚀 ~ getUpsells ~ err:", err);
     }
   }
 
@@ -131,14 +131,14 @@ const getUpsells = async () => {
 
 const removeAllFromCart = () => {
   state.items.forEach((item) => {
-    $tools.call('REMOVE_FROM_CART', item);
+    $tools.call("REMOVE_FROM_CART", item);
   });
 
   $tools.toast(sections.alerts.cart.removed_text);
 };
 
 const remove = async (item: any) => {
-  $tools.call('REMOVE_FROM_CART', item);
+  $tools.call("REMOVE_FROM_CART", item);
   $tools.toast(sections.alerts.cart.removed_text);
 };
 
@@ -170,8 +170,8 @@ onMounted(async () => {
     await getUpsells();
   }
 
-  $tools.call('PAGE_VIEW');
-  $storeino.fbpx('PageView');
+  $tools.call("PAGE_VIEW");
+  $storeino.fbpx("PageView");
 });
 </script>
 

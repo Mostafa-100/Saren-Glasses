@@ -6,6 +6,27 @@ const props: any = defineProps({
   images: Array,
 });
 
+function getSizeText(type: String) {
+  switch (type) {
+    case "XXS":
+      return "Extra Extra Small";
+    case "XS":
+      return "Extra Small";
+    case "S":
+      return "Small";
+    case "M":
+      return "Medium";
+    case "L":
+      return "Large";
+    case "XL":
+      return "Extra Large";
+    case "XXL":
+      return "Extra Extra Large";
+  }
+}
+
+console.log("Options", props.options);
+
 // Reactive State
 const selected = ref(props.variants[0]);
 const listStyleColorValue = ref({});
@@ -13,12 +34,12 @@ const listStyleSizeValue = ref({});
 const listStyleOtherOption = ref({});
 const loadImages = ref(false);
 
-const emit = defineEmits(['selected']);
+const emit = defineEmits(["selected"]);
 
 // Methods
 const getImageStyle = () => {
   for (const option of props.options) {
-    if (option.style === 'IMAGE') {
+    if (option.style === "IMAGE") {
       for (const val of option.values) {
         for (const variant of props.variants) {
           if (
@@ -43,13 +64,13 @@ const getImageStyle = () => {
 const stylesOptions = () => {
   if (props.options && props.options.length > 0) {
     props.options.forEach((opt: any, i) => {
-      if (opt.style === 'LIST' && opt.key === 'color') {
+      if (opt.style === "LIST" && opt.key === "color") {
         listStyleColorValue.value = { index: i + 1, value: opt.values[0]._id };
       }
-      if (opt.style === 'LIST' && opt.key === 'size') {
+      if (opt.style === "LIST" && opt.key === "size") {
         listStyleSizeValue.value = { index: i + 1, value: opt.values[0]._id };
       }
-      if (opt.style === 'LIST' && opt.key !== 'size' && opt.key !== 'color') {
+      if (opt.style === "LIST" && opt.key !== "size" && opt.key !== "color") {
         listStyleOtherOption.value = { index: i + 1, value: opt.values[0]._id };
       }
     });
@@ -93,7 +114,7 @@ const setVariant = (index: any, value: any) => {
     );
   }
 
-  emit('selected', selected.value);
+  emit("selected", selected.value);
 };
 
 const changeVarColor = () => {
@@ -132,7 +153,7 @@ onMounted(async () => {
       :class="option.key"
     >
       <!-- Name -->
-      <h2 class="text-sm font-medium capitalize text-gray">
+      <h2 class="text-sm font-medium capitalize text-[#8E9194]">
         {{ option.name }}
       </h2>
       <!-- Name -->
@@ -152,22 +173,21 @@ onMounted(async () => {
             option.style == 'SIZE') ||
           (option.key == 'color' && option.style == 'COLOR')
         "
-        class="options-list"
+        :class="`options-list ${option.key == 'size' && 'flex-col'}`"
       >
-        <div v-for="(val, ii) in option.values" :key="ii" class="option mr-f-2">
+        <div
+          v-for="(val, ii) in option.values"
+          :key="ii"
+          :class="`${option.key == 'color' ? 'option' : ''} mr-f-2`"
+        >
           <button
             :id="val._id"
             aria-label="colors button"
-            :class="
-              selected[`option${i + 1}`] &&
-              selected[`option${i + 1}`].value == val._id
-                ? 'active'
-                : ''
-            "
+            :class="`${selected[`option${i + 1}`] && selected[`option${i + 1}`].value == val._id ? (option.key == 'color' ? 'active' : 'bg-black text-white') : ''} ${option.key == 'size' ? 'w-full border-2 mb-2 p-1.5 rounded-sm' : 'w-full border-2 mb-2 p-2 rounded-sm'}`"
             :style="`${option.key == 'color' ? `background-color:${val.value2}` : ''}`"
             @click="setVariant(i + 1, val._id)"
           >
-            <small class="text-xs">{{ val.value1 }}</small>
+            <small class="text-xs">{{ getSizeText(val.value1) }}</small>
           </button>
         </div>
       </div>
@@ -589,7 +609,7 @@ onMounted(async () => {
   margin-right: 0.5rem;
 }
 
-[dir='rtl'] .mr-f-2 {
+[dir="rtl"] .mr-f-2 {
   margin-left: 0.5rem;
 }
 
@@ -699,7 +719,7 @@ onMounted(async () => {
 
 /* Arrow */
 .options-list .select-list-option::after {
-  content: '\25BC';
+  content: "\25BC";
   position: absolute;
   top: -5px;
   right: 0;

@@ -22,15 +22,26 @@ const props: any = defineProps({
   },
   reviewsActiveColor: {
     type: String,
-    default: '#FFA41C',
+    default: "#FFA41C",
   },
   reviewsInActiveColor: {
     type: String,
-    default: '#E6E6E6',
+    default: "#E6E6E6",
+  },
+  price: {
+    type: Object,
+  },
+  stockColor: {
+    type: String,
+    require: true,
+  },
+  stockText: {
+    type: String,
+    require: true,
   },
 });
 
-const emit = defineEmits(['toggle-wishlist']);
+const emit = defineEmits(["toggle-wishlist"]);
 
 const filteredSocialMedia = computed(() => {
   return props.socialMedia.filter(
@@ -47,47 +58,68 @@ const filteredSocialMedia = computed(() => {
     <!--  -->
 
     <!--  -->
-    <div class="flex gap-2">
-      <!--  -->
-      <h2 class="text-2xl md:text-[1.75rem] md:leading-8 font-medium">
-        {{ item.name }}
-      </h2>
-      <!--  -->
-
-      <!--  -->
-      <div
-        v-if="products.add_to_wishlist.active"
-        class="w-fit flex justify-center"
-      >
+    <div>
+      <div class="flex justify-between">
         <!--  -->
-        <button
-          :title="isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'"
-          class="w-10 h-10 flex items-center justify-center border border-third rounded-full bg-white text-secondary shadow hover:bg-secondary hover:text-white transition-all duration-300"
-          @click="$emit('toggle-wishlist')"
+        <h2 class="text-sm uppercase md:leading-8 font-[600]">
+          {{ item.name }}
+        </h2>
+        <!--  -->
+        <!--  -->
+        <div
+          v-if="products.add_to_wishlist.active"
+          class="w-fit flex justify-center"
         >
           <!--  -->
-          <Icon
-            :name="isInWishlist ? 'solar:heart-bold' : 'solar:heart-linear'"
-            class="flex items-center justify-center text-2xl"
-          />
+          <button
+            :title="isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'"
+            class=""
+            @click="$emit('toggle-wishlist')"
+          >
+            <!--  -->
+            <Icon
+              :name="isInWishlist ? 'solar:heart-bold' : 'solar:heart-linear'"
+              class="flex items-center justify-center text-sm"
+            />
+            <!--  -->
+          </button>
           <!--  -->
-        </button>
+        </div>
         <!--  -->
       </div>
       <!--  -->
+      <ProductPrice
+        page="product"
+        :type="'simple'"
+        :price="price"
+        :variants="[]"
+        price-style="text-sm"
+        currency-style="text-sm text-[#0f0f0f]"
+        sub-price-style="text-sm font-light"
+      />
     </div>
     <!--  -->
-
+    <div
+      v-if="props.products.stock.active"
+      class="h-5 flex items-center justify-center text-white rounded-sm mt-3 w-fit"
+      :style="{ backgroundColor: props.stockColor }"
+    >
+      <!--  -->
+      <span class="px-2 text-xs font-normal">{{ props.stockText }}</span>
+      <!--  -->
+    </div>
     <!--  -->
     <div v-if="products.reviews.active" class="flex gap-1.5 items-center">
       <!--  -->
-      <div class="flex items-center gap-1">
+      <div class="flex items-center">
         <!--  -->
         <Icon
           v-for="star in 5"
           :key="star"
           :name="
-            star <= item.review.rating ? 'solar:star-bold' : 'solar:star-linear'
+            star <= item.review.rating
+              ? 'material-symbols:star-rate-rounded'
+              : 'material-symbols:star-outline-rounded'
           "
           :style="{
             color:
@@ -101,7 +133,7 @@ const filteredSocialMedia = computed(() => {
       <!--  -->
 
       <!--  -->
-      <span class="text-s font-medium align-middle text-secondary">
+      <span class="text-sm">
         {{ `(${item.review.reviews.length} ${product.reviews.reviews_name})` }}
       </span>
       <!--  -->
@@ -117,7 +149,7 @@ const filteredSocialMedia = computed(() => {
       <!--  -->
 
       <!--  -->
-      <p class="text-sm font-normal">{{ item.description }}</p>
+      <p class="text-sm text-[#0f0f0f] font-[300]">{{ item.description }}</p>
       <!--  -->
     </div>
     <!--  -->
@@ -248,28 +280,6 @@ const filteredSocialMedia = computed(() => {
         <!--  -->
       </span>
       <!--  -->
-    </div>
-    <!--  -->
-
-    <!--  -->
-    <div
-      v-if="item.sizes?.volume && products.volume.active"
-      class="flex items-center"
-    >
-      <!--  -->
-      <span class="text-s font-medium capitalize">
-        <!--  -->
-        {{ product.volume.title }}
-        <!--  -->
-
-        <!--  -->
-        <span class="font-normal">
-          <!--  -->
-          {{ item.sizes.volume.value + item.sizes.volume.unit }}
-          <!--  -->
-        </span>
-        <!--  -->
-      </span>
     </div>
     <!--  -->
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { ref } from "vue";
+import { useMainStore } from "@/stores/main";
 
 const $store = useMainStore();
 
@@ -33,7 +33,7 @@ const switchToReviews = () => {
 };
 
 const hasReviewsApp = computed(() =>
-  $store.apps.find((a: any) => a.placement?.indexOf('REPLACE_REVIEWS') >= 0)
+  $store.apps.find((a: any) => a.placement?.indexOf("REPLACE_REVIEWS") >= 0)
 );
 
 const showReviewsTab = computed(() => props.product.reviews.active);
@@ -46,9 +46,9 @@ const showReviewsTab = computed(() => props.product.reviews.active);
     <div class="flex gap-4 items-center border-b border-third pt-1 px-4">
       <!--  -->
       <div
-        class="leading-10 border-b-4 border-black hover:text-secondary cursor-pointer transition-all duration-300"
+        class="leading-10 border-b-4 border-black hover:text-[#42829C] cursor-pointer transition-all duration-300"
         :class="
-          description ? 'text-secondary border-secondary' : 'border-transparent'
+          description ? 'text-[#42829C] border-[#42829C]' : 'border-transparent'
         "
         @click="switchToDescription"
       >
@@ -63,9 +63,9 @@ const showReviewsTab = computed(() => props.product.reviews.active);
       <!--  -->
       <div
         v-if="showReviewsTab"
-        class="leading-10 border-b-4 border-black hover:text-secondary cursor-pointer transition-all duration-300"
+        class="leading-10 border-b-4 border-black hover:text-[#42829C] cursor-pointer transition-all duration-300"
         :class="
-          reviews ? 'text-secondary border-secondary' : 'border-transparent'
+          reviews ? 'text-secondary border-[#42829C]' : 'border-transparent'
         "
         @click="switchToReviews"
       >

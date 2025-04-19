@@ -7,11 +7,13 @@ const currentIndex = ref(0);
 
 const next = () => {
   currentIndex.value = (currentIndex.value + 1) % props.images.length;
+  console.log("Next image src", props.images[currentIndex.value].src);
 };
 
 const prev = () => {
   currentIndex.value =
     currentIndex.value === 0 ? props.images.length - 1 : currentIndex.value - 1;
+  console.log("Prev image src", props.images[currentIndex.value].src);
 };
 </script>
 

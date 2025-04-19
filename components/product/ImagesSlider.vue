@@ -14,7 +14,7 @@ const props: any = defineProps({
   },
 });
 
-const emit = defineEmits(['update:showImageSlider', 'update:visibleSlide']);
+const emit = defineEmits(["update:showImageSlider", "update:visibleSlide"]);
 
 const zoom = ref(0);
 const imageScale = ref(1);
@@ -24,7 +24,7 @@ const fullScreen = ref(false);
 const isDragging = ref(false);
 const startX = ref(0);
 const startY = ref(0);
-const cursor = ref('cursor-zoom-in');
+const cursor = ref("cursor-zoom-in");
 
 const swiperBreakpoints = {
   640: { slidesPerView: 5 },
@@ -32,7 +32,7 @@ const swiperBreakpoints = {
   1024: { slidesPerView: 7 },
 };
 
-const closeSlider = () => emit('update:showImageSlider', false);
+const closeSlider = () => emit("update:showImageSlider", false);
 
 const toggleFullscreen = () => {
   if (!document.fullscreenElement) {
@@ -48,11 +48,11 @@ const toggleZoom = () => {
   if (imageScale.value > 1) {
     imageScale.value = 1;
     zoom.value = 0;
-    cursor.value = 'cursor-zoom-in';
+    cursor.value = "cursor-zoom-in";
   } else {
     imageScale.value = 2;
     zoom.value = 100;
-    cursor.value = 'cursor-zoom-out';
+    cursor.value = "cursor-zoom-out";
   }
 };
 
@@ -117,7 +117,7 @@ const prev = () => {
 };
 
 const setImage = (index: number) => {
-  emit('update:visibleSlide', index);
+  emit("update:visibleSlide", index);
 };
 </script>
 

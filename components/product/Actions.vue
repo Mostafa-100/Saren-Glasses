@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from "@/stores/main";
 
 const $store = useMainStore();
 
@@ -39,42 +39,40 @@ const props: any = defineProps({
 });
 
 const emit = defineEmits([
-  'variant-selected',
-  'quantity-selected',
-  'add-to-cart',
-  'buy-now',
+  "variant-selected",
+  "quantity-selected",
+  "add-to-cart",
+  "buy-now",
 ]);
 
 const variantSelected = (variant: any) => {
-  emit('variant-selected', variant);
+  emit("variant-selected", variant);
 };
 
 const quantitySelected = (qty: any) => {
-  emit('quantity-selected', qty);
+  emit("quantity-selected", qty);
 };
 
 const addToCart = () => {
-  emit('add-to-cart');
+  emit("add-to-cart");
 };
 
 const buyNow = () => {
-  emit('buy-now');
+  emit("buy-now");
 };
 
 const isBuyNowVisible = computed(
   () =>
     props.product.buy_now.active &&
-    !$store.apps.find((a: any) => a.placement?.indexOf('REPLACE_BUYNOW') >= 0)
+    !$store.apps.find((a: any) => a.placement?.indexOf("REPLACE_BUYNOW") >= 0)
 );
 </script>
 
 <template>
   <!--  -->
-  <div
-    class="flex flex-col gap-4 items-center justify-center border border-third rounded-lg py-4 px-8"
-  >
+  <div class="flex flex-col gap-4 border border-third rounded-lg py-4 px-8">
     <!--  -->
-    <ProductPrice
+    <!-- <ProductPrice
       page="product"
       :type="'simple'"
       :price="props.price"
@@ -82,22 +80,16 @@ const isBuyNowVisible = computed(
       price-style="text-3xl font-bold"
       currency-style="text-xs font-bold leading-3"
       sub-price-style="text-base font-light"
-    />
+    /> -->
     <!--  -->
 
     <!--  -->
     <div
-      v-if="props.products.stock.active"
-      class="h-5 flex items-center justify-center text-white rounded-sm"
-      :style="{ backgroundColor: props.stockColor }"
+      v-if="props.item.options.length > 0"
+      class="text-sm uppercase font-[600]"
     >
-      <!--  -->
-      <span class="px-2 text-xs font-normal">{{ props.stockText }}</span>
-      <!--  -->
+      Configure
     </div>
-    <!--  -->
-
-    <!--  -->
     <ProductVariants
       v-if="props.item.type == 'variable'"
       class="flex text-xs"
@@ -113,7 +105,7 @@ const isBuyNowVisible = computed(
       v-if="props.product.quantity.active && !props.outOfStock"
       class="w-full"
       :quantity="props.quantity"
-      @selected="quantitySelected"
+      @selected="quantitySelected ?? 1"
     />
     <!--  -->
 
@@ -125,9 +117,10 @@ const isBuyNowVisible = computed(
 
       <!--  -->
       <GlobalButton
-        variant="secondary"
+        variant="primary"
         :text="props.product.add_to_cart.text"
         :is-visible="props.product.add_to_cart.active"
+        icon="solar:arrow-up-bold-duotone"
         @click="addToCart"
       />
       <!--  -->

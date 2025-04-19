@@ -164,8 +164,6 @@
     "../node_modules/nuxt-swiper/dist/runtime",
     "../node_modules/@sentry/nuxt/runtime",
     "../node_modules/@sentry/nuxt/dist/runtime",
-    "../node_modules/@nuxt/devtools/runtime",
-    "../node_modules/@nuxt/devtools/dist/runtime",
     "../node_modules/@nuxt/telemetry/runtime",
     "../node_modules/@nuxt/telemetry/dist/runtime",
     ".."
@@ -180,7 +178,6 @@
     "../node_modules/@nuxt/icon/node_modules",
     "../node_modules/nuxt-swiper/node_modules",
     "../node_modules/@sentry/nuxt/node_modules",
-    "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../node_modules/@nuxtjs/google-fonts/runtime/server",
     "../node_modules/@nuxtjs/google-fonts/dist/runtime/server",
@@ -194,8 +191,6 @@
     "../node_modules/nuxt-swiper/dist/runtime/server",
     "../node_modules/@sentry/nuxt/runtime/server",
     "../node_modules/@sentry/nuxt/dist/runtime/server",
-    "../node_modules/@nuxt/devtools/runtime/server",
-    "../node_modules/@nuxt/devtools/dist/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "../node_modules/@nuxt/telemetry/dist/runtime/server",
     "../.output"

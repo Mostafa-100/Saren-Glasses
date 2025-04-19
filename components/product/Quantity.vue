@@ -3,15 +3,15 @@ const props: any = defineProps({
   quantity: Object,
 });
 
-const emit = defineEmits(['selected']);
+const emit = defineEmits(["selected"]);
 
-const value = ref(props.quantity.value || props.quantity.default || 1);
+const value = ref(props.quantity.value || props.quantity.default);
 
 watch(value, (val) => {
   if (val > props.quantity.instock) value.value = props.quantity.instock;
   if (val < props.quantity.min) value.value = props.quantity.default;
   if (isNaN(val)) value.value = props.quantity.default;
-  emit('selected', value.value);
+  emit("selected", value.value);
 });
 
 const inc = (inc: any) => {

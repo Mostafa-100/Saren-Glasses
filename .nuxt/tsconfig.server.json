@@ -140,7 +140,6 @@
     "../node_modules/@nuxt/icon/runtime/server",
     "../node_modules/nuxt-swiper/runtime/server",
     "../node_modules/@sentry/nuxt/runtime/server",
-    "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
     "../**/*",
@@ -155,7 +154,6 @@
     "../node_modules/@nuxt/icon/node_modules",
     "../node_modules/nuxt-swiper/node_modules",
     "../node_modules/@sentry/nuxt/node_modules",
-    "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../dist"
   ]
