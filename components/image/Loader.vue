@@ -25,7 +25,5 @@ const props = defineProps({
 </script>
 
 <template>
-  <div>
-    <img :src="props.src" :alt="props.alt" :class="imgClass" />
-  </div>
+  <img :src="props.src" :alt="props.alt" :class="imgClass" />
 </template>

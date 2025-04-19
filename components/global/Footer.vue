@@ -35,7 +35,7 @@ const textColor = ref(footer.colors.text_color);
 
       <!--  -->
       <div
-        class="container flex flex-wrap justify-between py-10 container-nop menus lg:py-14"
+        class="container flex flex-wrap justify-between py-10 container-nop menus lg:py-14 gap-y-4"
       >
         <!--  -->
         <FooterAbout :about="footer.about" />

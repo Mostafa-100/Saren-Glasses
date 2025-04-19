@@ -14,27 +14,20 @@ const formattedPrice = (price: number) => {
 
 <template>
   <!--  -->
-  <div class="flex flex-col border border-third rounded-lg py-4 px-6">
+  <div class="flex flex-col rounded-lg py-4 px-6">
     <!--  -->
-    <div class="flex items-center justify-center border-b border-third pb-3">
-      <!--  -->
-      <span class="text-xl text-center font-bold text-primary">
-        {{ props.texts.cart_text }}
-      </span>
-      <!--  -->
-    </div>
     <!--  -->
 
     <!--  -->
-    <div class="flex items-center justify-between border-b border-third py-3">
+    <div class="flex items-center justify-between py-3">
       <!--  -->
-      <span class="text-sm font-medium">
+      <span class="text-sm font-light">
         {{ props.texts.total_product_text }}
       </span>
       <!--  -->
 
       <!--  -->
-      <span class="text-sm font-medium">
+      <span class="text-sm font-light">
         {{ `${props.items.length} ${props.texts.product_text}` }}
       </span>
       <!--  -->
@@ -42,15 +35,15 @@ const formattedPrice = (price: number) => {
     <!--  -->
 
     <!--  -->
-    <div class="flex items-center justify-between border-b border-third py-3">
+    <div class="flex items-center justify-between py-3">
       <!--  -->
-      <span class="text-sm font-medium">
+      <span class="text-sm font-light">
         {{ props.texts.subtotal_text }}
       </span>
       <!--  -->
 
       <!--  -->
-      <span class="text-sm font-medium">
+      <span class="text-sm font-light">
         {{ `${formattedPrice(props.total)} ${props.currency.symbol}` }}
       </span>
       <!--  -->
@@ -60,13 +53,13 @@ const formattedPrice = (price: number) => {
     <!--  -->
     <div class="flex items-center justify-between pt-3">
       <!--  -->
-      <span class="text-lg font-bold">
+      <span class="text-lg font-light">
         {{ props.texts.total_text }}
       </span>
       <!--  -->
 
       <!--  -->
-      <span class="text-xl font-bold text-secondary">
+      <span class="text-xl font-light">
         {{ `${formattedPrice(props.total)} ${props.currency.symbol}` }}
       </span>
       <!--  -->

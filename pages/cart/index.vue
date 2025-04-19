@@ -177,33 +177,25 @@ onMounted(async () => {
 
 <template>
   <!-- -->
-  <div class="cart-page">
+  <div class="cart-page bg-[#F1F1F1] minh-dvh">
     <!-- -->
     <AppsLoader placement="CART_PAGE" />
     <!-- -->
-
-    <!--  -->
-    <GlobalNav
-      :home-name="pagesNav.home.name"
-      :current-page-name="texts.navbar_text"
-    />
     <!--  -->
 
     <!-- -->
     <div
       v-if="state.loading.cart"
-      class="flex items-center justify-center my-10"
+      class="flex items-center h-dvh justify-center"
     >
-      <!-- -->
       <LoaderGlobal />
-      <!-- -->
     </div>
     <!-- -->
 
     <!-- -->
     <div
       v-if="!state.loading.cart && state.items.length == 0"
-      class="flex justify-center my-20"
+      class="flex justify-center min-h-dvh"
     >
       <!-- -->
       <CartEmpty :texts="texts" :buttons="buttons" />
@@ -214,7 +206,7 @@ onMounted(async () => {
     <!--  -->
     <div
       v-if="!state.loading.cart && state.items.length > 0"
-      class="container my-10 md:my-14 lg:my-16"
+      class="container pt-[112px]"
     >
       <!--  -->
       <div class="flex flex-col lg:flex-row gap-4 lg:gap-8">
@@ -236,26 +228,18 @@ onMounted(async () => {
               :item="item"
               @remove="remove"
             />
+
             <!--  -->
           </div>
           <!--  -->
 
-          <!--  -->
-          <div class="flex items-center justify-center lg:justify-end">
-            <!--  -->
-            <CartRemoveAll
-              :text="texts.remove_all_text"
-              :remove-all="removeAllFromCart"
-            />
-            <!--  -->
-          </div>
           <!--  -->
         </div>
         <!--  -->
 
         <div
           v-if="!state.loading.cart && state.items.length > 0"
-          class="w-full flex flex-col gap-4 lg:w-1/3 h-fit"
+          class="w-full flex flex-col gap-4 lg:w-1/3 h-fit p-4 bg-[#0F0F0F] text-white"
         >
           <!--  -->
           <CartTotals

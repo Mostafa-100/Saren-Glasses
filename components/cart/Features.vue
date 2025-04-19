@@ -8,15 +8,15 @@ const props = defineProps({
 
 const featureItems = computed(() => {
   return Object.keys(props.features)
-    .filter((key) => key.startsWith('item_'))
+    .filter((key) => key.startsWith("item_"))
     .map((key) => props.features[key]);
 });
 
 const defaultIcons = [
-  'mdi:truck-delivery',
-  'mdi:package-variant',
-  'mdi:store-check',
-  'mdi:shield-check',
+  "mdi:truck-delivery",
+  "mdi:package-variant",
+  "mdi:store-check",
+  "mdi:shield-check",
 ];
 
 const getIcon = (item: any, index: any) => {
@@ -28,9 +28,9 @@ const getIcon = (item: any, index: any) => {
   <!--  -->
   <div
     v-if="features.active"
-    class="w-full rounded-lg py-4 px-4 lg:px-6"
+    class="w-full rounded-sm py-4 px-4 lg:px-6 border cursor-pointer border-[#d1d1d1]"
     :style="{
-      backgroundColor: features.colors.background_color,
+      backgroundColor: 'transparent',
       color: features.colors.text_color,
     }"
   >
@@ -45,13 +45,13 @@ const getIcon = (item: any, index: any) => {
       >
         <!--  -->
         <div
-          class="flex flex-col lg:flex-row items-center gap-3 border lg:border-0 border-third rounded-lg p-2 lg:p-0"
+          class="flex flex-col lg:flex-row items-center gap-3 border lg:border-0 border-white rounded-md p-2 lg:p-0"
         >
           <!--  -->
           <div
-            class="h-12 w-12 lg:h-10 lg:w-10 flex items-center justify-center border border-third rounded-full"
+            class="h-12 w-12 lg:h-10 lg:w-10 flex items-center justify-center border border-white rounded-full"
             :style="{
-              backgroundColor: `${features.colors.background_color}`,
+              backgroundColor: 'transparent',
             }"
           >
             <!--  -->
@@ -76,7 +76,7 @@ const getIcon = (item: any, index: any) => {
 
           <!--  -->
           <span
-            class="text-sm lg:text-base font-medium text-center lg:text-start"
+            class="text-sm lg:text-base font-light text-center lg:text-start"
             >{{ item.title }}</span
           >
           <!--  -->

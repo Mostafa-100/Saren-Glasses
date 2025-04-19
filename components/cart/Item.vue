@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { computed, watch } from "vue";
+import { useMainStore } from "@/stores/main";
 
 const { $tools }: any = useNuxtApp();
 const $store = useMainStore();
@@ -10,7 +10,7 @@ const props = defineProps({
   quantity: { type: Number, default: 1 },
 });
 
-const emit = defineEmits(['remove']);
+const emit = defineEmits(["remove"]);
 
 const formattedPrice = computed(() => {
   return (price: any) =>
@@ -35,7 +35,7 @@ const quantitySelected = (quantity: any) => {
     );
   }
 
-  $tools.call('ADD_TO_CART', { ...cartItem, quantity });
+  $tools.call("ADD_TO_CART", { ...cartItem, quantity });
 };
 
 watch(
@@ -47,17 +47,20 @@ watch(
 );
 
 const remove = () => {
-  emit('remove', props.item);
+  emit("remove", props.item);
 };
+
+// Temp
+console.log("Cart item", props.item);
 </script>
 
 <template>
   <!--  -->
   <div
-    class="relative flex flex-col md:flex-row items-center justify-between gap-1 md:gap-2 lg:gap-4 rounded-lg border border-third bg-white p-4 md:p-6"
+    class="relative flex flex-col md:flex-row items-center gap-1 md:gap-2 lg:gap-4 rounded-lg border border-third bg-white p-3"
   >
     <!--  -->
-    <div class="w-full md:w-2/3 flex items-center gap-2">
+    <div class="w-full flex gap-2">
       <!--  -->
       <NuxtLink
         :to="`/products/${props.item.slug}`"
@@ -66,7 +69,7 @@ const remove = () => {
       >
         <!--  -->
         <ImageLoader
-          img-class="w-2/6"
+          img-class="w-full md:max-w-[180px]"
           :src="props.item.image"
           :alt="props.item.name"
         />
@@ -79,24 +82,33 @@ const remove = () => {
         <!--  -->
         <NuxtLink
           :to="`/products/${props.item.slug}`"
-          class="text-sm font-medium"
+          class="uppercase text-[18px] font-[600]"
         >
           {{ props.item.name }}
         </NuxtLink>
         <!--  -->
 
         <!--  -->
-        <NuxtLink
+        <div
           v-if="props.item.variant"
-          :to="`/products/${props.item.slug}`"
-          class="text-xs text-third font-medium"
+          class="text-xs text-third text-[#8E9194]"
         >
           <!--  -->
           {{ props.item.variant.name }}
           <!--  -->
-        </NuxtLink>
+        </div>
         <!--  -->
-
+        <div class="text-sm">
+          {{ props.item.quantity.value }} x {{ props.item.price }}
+          {{ $store.currency.symbol }}
+        </div>
+        <!--  -->
+        <div class="w-fit">
+          <ProductQuantity
+            :quantity="props.item.quantity"
+            @selected="quantitySelected"
+          />
+        </div>
         <!--  -->
         <div
           v-if="props.item.upsell"
@@ -106,8 +118,8 @@ const remove = () => {
           <span class="text-xs font-normal"
             >-{{
               `${props.item.upsell.value} ${
-                props.item.upsell.type == 'percentage'
-                  ? '%'
+                props.item.upsell.type == "percentage"
+                  ? "%"
                   : $store.currency.symbol
               }`
             }}</span
@@ -125,35 +137,27 @@ const remove = () => {
       class="w-full md:w-1/3 flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-2"
     >
       <!--  -->
-      <div
-        class="absolute top-2 right-2 md:top-auto md:right-auto md:static flex items-center justify-center cursor-pointer text-red-600 hover:opacity-90 hover:text-red-800 hover:scale-105 transition-all duration-300"
-        @click="remove"
-      >
+      <div class="absolute top-2 right-2 cursor-pointer" @click="remove">
         <!--  -->
-        <Icon name="solar:trash-bin-trash-linear" class="text-2xl translate" />
+        <Icon name="system-uicons:close" class="text-[29px]" />
         <!--  -->
       </div>
       <!--  -->
 
       <!--  -->
-      <ProductQuantity
-        :quantity="props.item.quantity"
-        @selected="quantitySelected"
-      />
       <!--  -->
 
       <!--  -->
-      <div class="flex flex-col items-end justify-center">
+      <div
+        class="flex flex-col items-end justify-center absolute bottom-3 right-3"
+      >
         <!--  -->
-        <span class="text-base font-bold text-secondary">
+        <span class="text-sm">
           {{ `${formattedPrice(props.item.total)} ${$store.currency.symbol}` }}
         </span>
         <!--  -->
 
         <!--  -->
-        <span class="text-sm font-medium">
-          {{ `${formattedPrice(props.item.price)} ${$store.currency.symbol}` }}
-        </span>
         <!--  -->
       </div>
       <!--  -->

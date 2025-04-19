@@ -17,16 +17,16 @@ defineProps({
 
 <template>
   <!--  -->
-  <div class="flex items-center justify-between">
+  <div class="flex items-center gap-x-1">
     <!--  -->
-    <span class="text-base font-bold text-primary">
+    <span class="uppercase text-[16px] font-[600]">
       {{ cartTitle }}
     </span>
     <!--  -->
 
     <!--  -->
-    <span class="text-sm font-medium">
-      {{ `${itemsLength} ${productText}` }}
+    <span class="text-sm text-[#8E9194]">
+      {{ `(${itemsLength})` }}
     </span>
     <!--  -->
   </div>

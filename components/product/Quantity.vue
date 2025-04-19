@@ -22,38 +22,31 @@ const inc = (inc: any) => {
 
 <template>
   <!--  -->
-  <div
-    class="flex items-center bg-white border border-third rounded-lg overflow-hidden"
-  >
-    <!--  -->
+  <div class="flex items-center bg-white overflow-hidden">
+    <!-- -->
     <button
-      class="h-10 w-14 flex items-center justify-center hover:bg-secondary hover:text-white"
-      :class="value > props.quantity.min ? 'bg-gray' : 'bg-primary text-white '"
+      class="flex items-center justify-center border rounded-sm p-2"
       @click="inc(-1)"
     >
       <!--  -->
-      <Icon name="iconoir:minus" class="text-xl translate" />
+      <Icon name="iconoir:minus" class="text-sm translate" />
       <!--  -->
     </button>
 
     <!--  -->
-    <div class="w-full flex items-center justify-center">
+    <div class="w-fit flex items-center justify-center">
       <!--  -->
-      <label class="w-full relative">
-        <!--  -->
-        <span class="pr-2 text-sm font-medium text-center">{{ value }}</span>
-        <!--  -->
+      <span class="text-sm text-center text-[#8E9194] px-5">{{ value }}</span>
 
-        <!--  -->
-        <input
-          v-model="value"
-          :min="props.quantity.min"
-          :max="props.quantity.max"
-          class="absolute inset-0 w-full h-full text-sm text-center bg-opacity-0 outline-none"
-          type="number"
-        />
-        <!--  -->
-      </label>
+      <!--  -->
+      <input
+        v-model="value"
+        :min="props.quantity.min"
+        :max="props.quantity.max"
+        class="absolute inset-0 w-full h-full text-sm text-center bg-opacity-0 outline-none"
+        type="hidden"
+      />
+      <!--  -->
       <!--  -->
 
       <!--  -->
@@ -68,14 +61,11 @@ const inc = (inc: any) => {
 
     <!--  -->
     <button
-      class="h-10 w-14 flex items-center justify-center hover:bg-secondary hover:text-white"
-      :class="
-        value < props.quantity.instock ? 'bg-gray' : 'bg-primary text-white'
-      "
+      class="flex items-center justify-center border rounded-sm p-2"
       @click="inc(1)"
     >
       <!--  -->
-      <Icon name="iconoir:plus" class="text-xl translate" />
+      <Icon name="iconoir:plus" class="text-sm translate" />
       <!--  -->
     </button>
     <!--  -->
