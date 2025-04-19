@@ -15,8 +15,6 @@ const props: any = defineProps({
   currencyStyle: String,
 });
 
-console.log("Price", props.price);
-
 const currency = $store.currency;
 
 const minPrice: any = computed(() =>

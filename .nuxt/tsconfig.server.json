@@ -134,7 +134,6 @@
   },
   "include": [
     "./types/nitro-nuxt.d.ts",
-    "../node_modules/@nuxtjs/google-fonts/runtime/server",
     "../node_modules/@pinia/nuxt/runtime/server",
     "../node_modules/@nuxt/image/runtime/server",
     "../node_modules/@nuxt/icon/runtime/server",
@@ -148,7 +147,6 @@
   "exclude": [
     "../node_modules",
     "../node_modules/nuxt/node_modules",
-    "../node_modules/@nuxtjs/google-fonts/node_modules",
     "../node_modules/@pinia/nuxt/node_modules",
     "../node_modules/@nuxt/image/node_modules",
     "../node_modules/@nuxt/icon/node_modules",

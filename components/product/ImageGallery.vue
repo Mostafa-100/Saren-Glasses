@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   images: Array<{ src: string; alt?: string }>;
+  imageSizeClasses: String;
 }>();
 
 const currentIndex = ref(0);
@@ -21,7 +22,7 @@ const prev = () => {
     <img
       :src="props.images[currentIndex].src"
       :alt="props.images[currentIndex].alt || 'Slide Image'"
-      class="w-full h-auto object-contain rounded-lg"
+      :class="`object-cover rounded-lg ${props.imageSizeClasses ? props.imageSizeClasses : 'w-full h-auto'}`"
     />
 
     <!-- Arrows -->

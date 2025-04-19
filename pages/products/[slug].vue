@@ -348,8 +348,16 @@ const removeFromWishlist = () => {
             <div class="w-full md:w-1/2 lg:w-[45%]">
               <!--  -->
               <ProductImageGallery
+                v-if="item.images.length > 1"
                 :images="item.images"
                 :product-name="item.name"
+              />
+
+              <img
+                v-else
+                :src="item.images[0].src"
+                :alt="item.images[0].alt || 'Slide Image'"
+                class="object-cover rounded-lg w-full h-auto"
               />
             </div>
             <!--  -->

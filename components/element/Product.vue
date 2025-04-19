@@ -183,20 +183,20 @@ const removeFromWishlist = () => {
       class="w-1/3 wishlist relative shadow"
     >
       <!--  -->
-      <NuxtLink
-        :to="`/products/${props.item.slug}`"
-        :title="props.item.name"
-        :aria-label="props.item.name"
-        class=""
-      >
-        <!--  -->
-        <ImageLoader
-          :img-class="`object-cover ${imageSizeClasses}`"
-          :src="props.item.images.length > 0 ? props.item.images[0].src : null"
-          :alt="props.item.name"
-        />
-        <!--  -->
-      </NuxtLink>
+      <!--  -->
+      <ProductImageGallery
+        v-if="props.item.images.length > 1"
+        :images="props.item.images"
+        :imageSizeClasses="`${props.imageSizeClasses}`"
+      />
+
+      <ImageLoader
+        v-else
+        :img-class="`object-cover ${imageSizeClasses}`"
+        :src="props.item.images.length > 0 ? props.item.images[0].src : null"
+        :alt="props.item.name"
+      />
+      <!--  -->
       <!--  -->
 
       <!--  -->
