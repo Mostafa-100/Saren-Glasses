@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const props: any = defineProps({
   sidebar: {
@@ -23,7 +23,7 @@ function toggleProducts() {
   <!--  -->
   <div
     v-if="sidebar.products.active"
-    class="border border-third rounded-lg overflow-hidden"
+    class="border border-third overflow-hidden"
   >
     <!--  -->
     <div
@@ -57,7 +57,7 @@ function toggleProducts() {
         <div
           v-for="(product, i) in props.products"
           :key="i"
-          class="flex items-center gap-4 bg-third border border-third rounded-lg p-2 hover:opacity-90 hover:scale-105 transition-all duration-300"
+          class="flex items-center gap-4 bg-third border border-third p-2 hover:opacity-90 hover:scale-105 transition-all duration-300"
         >
           <!--  -->
           <NuxtLink
@@ -68,7 +68,7 @@ function toggleProducts() {
           >
             <!--  -->
             <ImageLoader
-              img-class="w-20 h-20 lg:h-16 lg:w-16 rounded-lg border border-third overflow-hidden"
+              img-class="w-20 h-20 lg:h-16 lg:w-16 border border-third overflow-hidden"
               :src="product.images.length > 0 ? product.images[0].src : null"
               :alt="product.name"
             />

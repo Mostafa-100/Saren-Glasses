@@ -70,7 +70,7 @@ const isBuyNowVisible = computed(
 
 <template>
   <!--  -->
-  <div class="flex flex-col gap-4 border border-third rounded-lg py-4 px-8">
+  <div class="flex flex-col gap-4 border border-third py-4 px-8">
     <!--  -->
     <!-- <ProductPrice
       page="product"

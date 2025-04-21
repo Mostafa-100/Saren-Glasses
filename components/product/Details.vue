@@ -101,7 +101,7 @@ const filteredSocialMedia = computed(() => {
     <!--  -->
     <div
       v-if="props.products.stock.active"
-      class="h-5 flex items-center justify-center text-white rounded-sm mt-3 w-fit"
+      class="h-5 flex items-center justify-center text-white mt-3 w-fit"
       :style="{ backgroundColor: props.stockColor }"
     >
       <!--  -->

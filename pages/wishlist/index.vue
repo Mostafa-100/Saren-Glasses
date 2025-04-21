@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
-import { useNuxtApp } from '#app';
-import { useMainStore } from '@/stores/main';
+import { ref, watch } from "vue";
+import { useNuxtApp } from "#app";
+import { useMainStore } from "@/stores/main";
 
 const { $settings, $storeino, $tools }: any = useNuxtApp();
 const $store = useMainStore();
@@ -18,15 +18,19 @@ const storeDescription = $settings.store_description;
 const pagesNav = ref(sections.pages);
 const wishlist: any = ref(sections.wishlist);
 
+console.log("wishlist", wishlist);
+
 const buttons = ref(wishlist.value.buttons);
 const texts = ref(wishlist.value.texts);
 
 const setSeo = () => {
-  const title = wishlist.value.title + ' - ' + storeName;
+  const title = wishlist.value.title + " - " + storeName;
   const description = wishlist.value.description || storeDescription;
   $store.seo.title = title;
   $store.seo.description = description;
 };
+
+console.log($settings.store_name);
 
 const initWishlist = async () => {
   items.value = [];
@@ -36,12 +40,12 @@ const initWishlist = async () => {
   if (ids.length > 0) {
     try {
       const response = await $storeino.products.search({
-        '_id-in': ids,
+        "_id-in": ids,
         limit: 1000,
       });
       items.value = response.data.results;
     } catch (err) {
-      console.log('🚀 ~ initWishlist ~ err:', err);
+      console.log("🚀 ~ initWishlist ~ err:", err);
     }
   }
 
@@ -50,7 +54,7 @@ const initWishlist = async () => {
 
 const removeAllFromWishlist = () => {
   items.value.forEach((item) => {
-    $tools.call('REMOVE_FROM_WISHLIST', item);
+    $tools.call("REMOVE_FROM_WISHLIST", item);
   });
 
   $tools.toast(alerts.value.wishlist.removed_text);
@@ -71,20 +75,25 @@ watch(
 
 <template>
   <!-- -->
-  <div class="wishlist-page">
+  <div
+    :class="`wishlist-page min-h-dvh ${!loading.wishlist && items.length > 0 ? 'pt-[112px]' : ''} bg-[#F1F1F1]`"
+  >
     <!-- -->
     <AppsLoader placement="WISHLIST_PAGE" />
     <!-- -->
 
     <!--  -->
-    <GlobalNav
+    <!-- <GlobalNav
       :home-name="pagesNav.home.name"
       :current-page-name="texts.navbar_text"
-    />
+    /> -->
     <!--  -->
 
     <!-- -->
-    <div v-if="loading.wishlist" class="flex items-center justify-center my-10">
+    <div
+      v-if="loading.wishlist"
+      class="flex items-center justify-center min-h-dvh"
+    >
       <!-- -->
       <LoaderGlobal />
       <!-- -->
@@ -94,7 +103,7 @@ watch(
     <!-- -->
     <div
       v-if="!loading.wishlist && items.length == 0"
-      class="flex justify-center my-20"
+      class="flex justify-center min-h-dvh"
     >
       <!-- -->
       <WishlistEmpty :texts="texts" :buttons="buttons" />
@@ -105,12 +114,14 @@ watch(
     <!--  -->
     <div
       v-if="!loading.wishlist && items.length > 0"
-      class="container-nop my-10 md:my-14 lg:my-16 px-2"
+      class="container-nop px-2"
     >
       <!--  -->
       <div class="flex flex-col gap-4">
         <!--  -->
-        <WishlistNav :texts="texts" :buttons="buttons" :items="items" />
+        <h2 class="text-center uppercase text-[16px]">
+          {{ wishlist.texts.title_text }}
+        </h2>
         <!--  -->
 
         <!--  -->
@@ -122,10 +133,10 @@ watch(
             class="w-1/2 md:w-1/3 lg:w-1/5 p-2"
           >
             <!--  -->
-            <ElementProduct
+            <WishlistProduct
               :item="item"
               page="wishlist"
-              class="border border-third rounded-2xl overflow-hidden"
+              class="overflow-hidden"
             />
             <!--  -->
           </div>
@@ -134,11 +145,11 @@ watch(
         <!--  -->
 
         <!--  -->
-        <WishlistRemoveAll
+        <!-- <WishlistRemoveAll
           :show-remove="buttons.show_remove"
           :remove-text="buttons.remove_text"
           @remove-all="removeAllFromWishlist"
-        />
+        /> -->
         <!--  -->
       </div>
       <!--  -->

@@ -40,7 +40,7 @@ const activeId2 = ref(null);
               {{ menu.text }}
             </span>
             <span
-              class="text-sm transform transition-transform duration-200 group-hover:-translate-y-full"
+              class="text-sm transform transition-transform duration-300 group-hover:-translate-y-full"
             >
               {{ menu.text }}
             </span>

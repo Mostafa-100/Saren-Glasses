@@ -4,7 +4,7 @@
     class="flex flex-col w-full gap-4 px-4 menu sm:w-1/2 lg:w-auto lg:flex-1"
   >
     <!--  -->
-    <h1 class="tracking-[20px] text-xl">{{ about.store_name }}</h1>
+    <h1 class="tracking-[20px] text-xl">{{ storeName }}</h1>
     <!--  -->
 
     <!--  -->
@@ -55,4 +55,7 @@ defineProps({
     required: true,
   },
 });
+
+const { $settings } = useNuxtApp();
+const storeName = ref($settings.store_name);
 </script>

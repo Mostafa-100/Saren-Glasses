@@ -3,13 +3,13 @@ defineProps({
   texts: {
     type: Object,
     default: () => ({
-      empty_text: '',
+      empty_text: "",
     }),
   },
   buttons: {
     type: Object,
     default: () => ({
-      back_to_shop_text: '',
+      back_to_shop_text: "",
     }),
   },
 });
@@ -19,39 +19,36 @@ defineProps({
   <!--  -->
   <div class="flex items-center justify-center">
     <!--  -->
-    <div class="flex flex-col items-center gap-4 md:gap-6">
+    <div class="flex flex-col items-center justify-center gap-1">
       <!--  -->
-      <div class="flex items-end justify-center">
+      <div class="flex justify-center">
         <!--  -->
         <Icon
           name="pepicons-pencil:heart-circle-off"
-          class="w-32 h-32 text-third md:w-40 md:h-40"
+          class="w-12 h-12 text-third"
         />
         <!--  -->
       </div>
       <!--  -->
 
       <!--  -->
-      <div
-        v-if="texts.empty_text"
-        class="flex flex-col items-center gap-3 md:gap-4"
-      >
+      <div v-if="texts.empty_text">
         <!--  -->
-        <span class="text-lg font-medium text-primary">{{
+        <span class="font-light text-sm text-[#0f0f0f]">{{
           texts.empty_text
         }}</span>
         <!--  -->
 
         <!--  -->
-        <NuxtLink
+        <!-- <NuxtLink
           v-if="buttons.shop_text"
-          to="/shop"
-          class="h-10 w-fit flex items-center justify-center px-8 cursor-pointer rounded-full border border-secondary bg-secondary text-white hover:bg-transparent hover:text-secondary transition-all duration-300"
+          to="/"
+          class="h-10 w-fit flex items-center justify-center px-8 cursor-pointer rounded-full border border-blue-500 bg-blue-500 text-white hover:bg-transparent hover:text-blue-500 transition-all duration-300"
         >
-          <!--  -->
-          <span class="text-sm font-medium">{{ buttons.shop_text }}</span>
-          <!--  -->
-        </NuxtLink>
+
+          <span class="text-sm">{{ buttons.shop_text }}</span>
+
+        </NuxtLink> -->
         <!--  -->
       </div>
       <!--  -->

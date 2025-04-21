@@ -172,171 +172,82 @@ const removeFromWishlist = () => {
 </script>
 
 <template>
-  <!--  -->
-  <div
-    :class="props.page == 'shop' ? 'flex-row' : 'flex-col'"
-    class="w-full h-full flex"
-  >
-    <!--  -->
-    <div
-      :class="props.page == 'shop' ? '' : 'w-full'"
-      class="w-1/3 wishlist relative shadow"
-    >
-      <!--  -->
-      <!--  -->
-      <ProductImageGallery
-        v-if="props.item.images.length > 1"
-        :images="props.item.images"
-        :imageSizeClasses="`${props.imageSizeClasses}`"
-      />
+  <div class="relative h-64 overflow-hidden">
+    <!-- Background image -->
+    <img
+      :src="item.images[0].src"
+      alt="Product image"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
 
-      <ImageLoader
-        v-else
-        :img-class="`object-cover ${imageSizeClasses}`"
-        :src="props.item.images.length > 0 ? props.item.images[0].src : null"
-        :alt="props.item.name"
-      />
-      <!--  -->
-      <!--  -->
-
-      <!--  -->
-
-      <!--  -->
-
-      <!--  -->
-      <div
-        v-if="products.stock.active && props.page !== 'wishlist'"
-        class="absolute top-1 left-1 z-10 m-2"
-      >
-        <!--  -->
-        <div
-          class="h-6 flex items-center justify-center text-white px-2"
-          :style="{ backgroundColor: stockColor }"
-        >
-          <!--  -->
-          <span class="text-xs font-normal">{{ stockText }}</span>
-          <!--  -->
-        </div>
-        <!--  -->
-      </div>
-      <!--  -->
-    </div>
-    <!--  -->
-
-    <!--  -->
-    <div
-      :class="props.page == 'shop' ? 'w-2/3 flex-row' : 'w-full flex-col'"
-      class="h-full flex gap-2 p-3"
-    >
-      <!--  -->
-      <div class="flex flex-col gap-2">
-        <!--  -->
+    <!-- Foreground content -->
+    <div class="relative z-10 flex justify-between items-end p-4 h-full">
+      <!-- Left section: title + price -->
+      <div class="flex flex-col justify-end max-w-[80%]">
         <NuxtLink
-          :to="`/products/${props.item.slug}`"
-          :class="`text-[14px] font-[600] uppercase leading-5 overflow-hidden ${textColorClass} text-ellipsis whitespace-normal line-clamp-3`"
+          :to="`/products/${item.slug}`"
+          class="text-sm uppercase text-[#0F0F0F] font-medium"
         >
-          {{ props.item.name }}
+          {{ item.name }}
         </NuxtLink>
-        <!--  -->
 
-        <!--  -->
+        <ProductPrice
+          page="home"
+          :type="item.type"
+          :price="item.price"
+          :variants="item.variants"
+          price-style="text-sm font-light text-[#0F0F0F]"
+          sub-price-style="text-sm font-normal text-[#0F0F0F]"
+        />
       </div>
-      <!--  -->
 
-      <!--  -->
-      <div
-        :class="
-          props.page == 'shop' ? 'flex-col items-end' : 'flex-row items-center'
-        "
-        class="flex justify-between text-x"
-      >
-        <!--  -->
-        <div class="flex gap-1 items-end justify-center">
+      <!-- Right section: wishlist button -->
+      <div class="flex gap-x-1">
+        <div v-if="products.add_to_wishlist.active" class="wishlist-icon">
           <!--  -->
-          <ProductPrice
-            page="home"
-            :type="props.item.type"
-            :price="props.item.price"
-            :variants="props.item.variants"
-            :price-style="`text-sm font-light ${textColorClass}`"
-            :sub-price-style="`text-sm font-normal ${textColorClass}`"
-          />
-          <!--  -->
-
-          <!--  -->
-          <div
-            v-if="discount"
-            class="flex items-center justify-center h-5 px-2 bg-primary text-white"
+          <button
+            :title="isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'"
+            :class="`h-9 w-9 flex items-center justify-center text-[#0F0F0F]`"
+            @click="toggleWishlist"
           >
             <!--  -->
-            <span class="text-xs font-normal"
-              >-{{ discount.value }}
-              {{
-                discount.type == "percentage" ? "%" : $store.currency.symbol
-              }}</span
-            >
+            <Icon
+              :name="isInWishlist ? 'solar:heart-bold' : 'solar:heart-linear'"
+              class="flex items-center justify-center text-lg text-[#0F0F0F]"
+            />
             <!--  -->
-          </div>
+          </button>
           <!--  -->
         </div>
-        <!--  -->
-
-        <!--  -->
-        <div class="flex gap-x-1">
-          <div
-            v-if="products.add_to_wishlist.active"
-            :class="page == 'wishlist' ? 'opacity-1' : 'opacity-1'"
-            class="wishlist-icon"
+        <div
+          v-if="products.add_to_cart.active"
+          class="flex flex-col items-end justify-center"
+        >
+          <!--  -->
+          <button
+            v-if="
+              !outOfStock &&
+              props.item.type == 'simple' &&
+              props.item.price.salePrice > 0
+            "
+            class="h-9 w-9 flex items-center justify-center text-[#0F0F0F] hover:text-secondary transition-all duration-300"
+            @click="addToCart()"
           >
             <!--  -->
-            <button
-              :title="isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'"
-              :class="`h-9 w-9 flex items-center justify-center ${textColorClass} transition-all duration-300`"
-              @click="toggleWishlist"
-            >
-              <!--  -->
-              <Icon
-                :name="isInWishlist ? 'solar:heart-bold' : 'solar:heart-linear'"
-                :class="`flex items-center justify-center text-lg ${textColorClass}`"
-              />
-              <!--  -->
-            </button>
+            <Icon
+              name="solar:cart-large-2-linear"
+              :class="`text-lg translate text-[#0F0F0F]`"
+            />
             <!--  -->
-          </div>
-          <div
-            v-if="products.add_to_cart.active"
-            class="flex flex-col items-end justify-center"
-          >
-            <!--  -->
-            <button
-              v-if="
-                !outOfStock &&
-                props.item.type == 'simple' &&
-                props.item.price.salePrice > 0
-              "
-              :class="`h-9 w-9 flex items-center justify-center ${textColorClass} hover:text-secondary transition-all duration-300`"
-              @click="addToCart()"
-            >
-              <!--  -->
-              <Icon
-                name="solar:cart-large-2-linear"
-                :class="`text-lg translate ${textColorClass}`"
-              />
-              <!--  -->
-            </button>
-            <!--  -->
+          </button>
+          <!--  -->
 
-            <!--  -->
-            <!--  -->
-          </div>
+          <!--  -->
+          <!--  -->
         </div>
-        <!--  -->
       </div>
-      <!--  -->
     </div>
-    <!--  -->
   </div>
-  <!--  -->
 </template>
 
 <style scoped>

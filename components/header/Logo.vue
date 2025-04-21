@@ -3,7 +3,7 @@ import { useNuxtApp } from "#app";
 
 const { $settings } = useNuxtApp();
 
-const storeName = $settings.sections.footer.about.store_name;
+const storeName = ref($settings.store_name);
 
 // Props for the LogoComponent
 const props = defineProps({
