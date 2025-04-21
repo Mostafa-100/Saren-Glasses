@@ -29,12 +29,12 @@ const setActive = (contentId: any, arrowId: any) => {
   const arrow = document.getElementById(arrowId);
 
   if (content && arrow) {
-    if (content.style.maxHeight === '0px' || !content.style.maxHeight) {
-      content.style.maxHeight = content.scrollHeight + 'px';
-      arrow.style.transform = 'rotate(180deg)';
+    if (content.style.maxHeight === "0px" || !content.style.maxHeight) {
+      content.style.maxHeight = content.scrollHeight + "px";
+      arrow.style.transform = "rotate(180deg)";
     } else {
-      content.style.maxHeight = '0px';
-      arrow.style.transform = 'rotate(0deg)';
+      content.style.maxHeight = "0px";
+      arrow.style.transform = "rotate(0deg)";
     }
   }
 };
@@ -48,28 +48,27 @@ const setActive = (contentId: any, arrowId: any) => {
       props.collections &&
       props.collections.length > 0
     "
-    class="border border-third rounded-lg overflow-hidden"
+    class="overflow-hidden"
   >
     <!--  -->
     <div
       v-if="sidebar.collections.title.length > 0"
-      class="h-10 flex items-center justify-between bg-third px-4 cursor-pointer hover:text-secondary transition-color duration-300"
-      @click="toggleCollections"
+      class="h-10 flex items-center justify-between px-4"
     >
       <!--  -->
-      <h2 class="font-medium tracking-normal text-sm capitalize">
+      <h2 class="text-sm capitalize">
         {{ sidebar.collections.title }}
       </h2>
       <!--  -->
 
       <!--  -->
-      <Icon
+      <!-- <Icon
         :name="'solar:alt-arrow-down-linear'"
         :class="[
           'text-xl transition-transform duration-300',
           { 'rotate-180': isOpen },
         ]"
-      />
+      /> -->
       <!--  -->
     </div>
     <!--  -->
@@ -77,7 +76,7 @@ const setActive = (contentId: any, arrowId: any) => {
     <!--  -->
     <transition name="slide-down">
       <!--  -->
-      <div v-if="isOpen" class="flex flex-col gap-3 px-4 py-3">
+      <div class="flex flex-col gap-3 px-4 py-3">
         <!--  -->
         <template v-for="(item, i) in props.collections" :key="i">
           <!--  -->
@@ -101,14 +100,14 @@ const setActive = (contentId: any, arrowId: any) => {
                 @click="setActive(i + 'fit', i + 'ret')"
               >
                 <!--  -->
-                <div class="transition-all duration-300 chevron-rotate">
-                  <!--  -->
+                <!-- <div class="transition-all duration-300 chevron-rotate">
+
                   <Icon
                     name="solar:alt-arrow-down-linear"
                     class="text-xl translate"
                   />
-                  <!--  -->
-                </div>
+
+                </div> -->
                 <!--  -->
               </div>
               <!--  -->

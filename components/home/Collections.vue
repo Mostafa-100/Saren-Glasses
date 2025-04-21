@@ -128,7 +128,7 @@ onMounted(() => {
             v-for="(item, index) in items[0]"
             :key="index"
             :item="item"
-            collectionHeightClass="h-[550px]"
+            collectionClass="h-[550px]"
           />
         </div>
 
@@ -137,7 +137,7 @@ onMounted(() => {
             v-for="(item, index) in items[1]"
             :key="index"
             :item="item"
-            collectionHeightClass="h-[460px]"
+            collectionClass="h-[460px]"
           />
         </div>
         <!--  -->

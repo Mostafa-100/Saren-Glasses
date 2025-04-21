@@ -34,28 +34,27 @@ const toggleColors = () => {
       props.filters.colors &&
       props.filters.colors.length > 0
     "
-    class="border border-third rounded-lg overflow-hidden"
+    class="overflow-hidden"
   >
     <!--  -->
     <div
       v-if="sidebar.colors.title.length > 0"
-      class="h-10 flex items-center justify-between bg-third px-4 cursor-pointer hover:text-secondary transition-color duration-300"
-      @click="toggleColors"
+      class="h-10 flex items-center justify-between bg-third px-4"
     >
       <!--  -->
-      <h2 class="font-medium tracking-normal text-sm capitalize">
+      <h2 class="text-sm capitalize">
         {{ sidebar.colors.title }}
       </h2>
       <!--  -->
 
       <!--  -->
-      <Icon
+      <!-- <Icon
         :name="'solar:alt-arrow-down-linear'"
         :class="[
           'text-xl transition-transform duration-300',
           { 'rotate-180': isOpen },
         ]"
-      />
+      /> -->
       <!--  -->
     </div>
     <!--  -->
@@ -63,13 +62,11 @@ const toggleColors = () => {
     <!--  -->
     <transition name="slide-down">
       <!--  -->
-      <div v-if="isOpen" class="flex flex-col gap-3 px-4 py-3">
+      <div class="flex flex-col gap-3 px-4 py-3">
         <!--  -->
         <div v-for="(item, i) in props.filters.colors" :key="i">
           <!--  -->
-          <label
-            class="relative flex items-center w-full gap-4 cursor-pointer hover:bg-third"
-          >
+          <label class="relative flex items-center w-full gap-4 cursor-pointer">
             <!--  -->
             <input
               :id="item.value1"
@@ -86,14 +83,12 @@ const toggleColors = () => {
               "
             />
             <!--  -->
-            <div
-              class="w-4 h-4 flex justify-center items-center bg-white border border-third rounded-sm"
-            >
+            <div class="w-4 h-4 flex justify-center items-center bg-white">
               <!--  -->
-              <Icon
+              <!-- <Icon
                 name="material-symbols:check-rounded"
                 class="hidden text-xl translate text-white"
-              />
+              /> -->
               <!--  -->
             </div>
             <!--  -->

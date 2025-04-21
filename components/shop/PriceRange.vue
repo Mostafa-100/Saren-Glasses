@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed } from "vue";
 const { $settings }: any = useNuxtApp();
 
 const sidebar = $settings.sections.shop.sidebar;
@@ -15,7 +15,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['change']);
+const emit = defineEmits(["change"]);
 
 const minVal = ref(props.min);
 const maxVal = ref(props.max);
@@ -33,7 +33,7 @@ watch(maxVal, (newValue) => {
 });
 
 const setParams = (event: Event, key: string) => {
-  emit('change', event, key);
+  emit("change", event, key);
 };
 
 const rangeStyle = computed(() => {
@@ -118,7 +118,7 @@ const rangeStyle = computed(() => {
       border-radius: 50%;
       z-index: 3;
       cursor: pointer;
-      background: var(--secondary-color);
+      background: #5c96fc;
     }
 
     &.min::-webkit-slider-thumb {
@@ -131,7 +131,7 @@ const rangeStyle = computed(() => {
   }
 
   .range-width {
-    background-color: var(--secondary-color);
+    background-color: #5c96fc;
   }
 }
 </style>

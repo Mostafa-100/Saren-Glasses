@@ -9,7 +9,7 @@ const props: any = defineProps({
     required: false,
     default: "",
   },
-  collectionHeightClass: {
+  collectionClass: {
     type: String,
     default: "",
   },
@@ -22,7 +22,7 @@ const collections = $settings.sections.collections;
 <template>
   <!--  -->
   <div
-    :class="`relative grid place-items-center grow ${props.collectionHeightClass}`"
+    :class="`relative grid place-items-center grow ${props.collectionClass}`"
   >
     <img
       :src="props.item.image ? props.item.image.src : ''"

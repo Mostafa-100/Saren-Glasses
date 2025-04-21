@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from "@/stores/main";
 
 const $store = useMainStore();
 
@@ -9,26 +9,29 @@ const props = defineProps({
     required: true,
   },
   type: {
-    type: String as () => 'collection' | 'default',
+    type: String as () => "collection" | "default",
     required: true,
-    validator: (value: string) => ['collection', 'default'].includes(value),
+    validator: (value: string) => ["collection", "default"].includes(value),
   },
 });
 
+// Templ
+console.log("Banner", props.banner);
+
 const isVisible = computed(() => {
-  if (props.type === 'collection') return true;
+  if (props.type === "collection") return true;
   return props.banner.active;
 });
 
 const bannerName: any = computed(() => {
-  if (props.type === 'collection') {
+  if (props.type === "collection") {
     return props.banner?.name;
   }
   return props.banner.title;
 });
 
 const shopImage: any = computed(() => {
-  if (props.type === 'collection') {
+  if (props.type === "collection") {
     return props.banner?.image?.src;
   }
   return props.banner?.image?.src || $store.defaults.shopImage;
@@ -37,26 +40,24 @@ const shopImage: any = computed(() => {
 
 <template>
   <!--  -->
-  <div
-    v-if="isVisible"
-    class="relative w-full h-40 md:h-60 lg:h-80 mb-5 overflow-hidden"
-  >
+  <div v-if="isVisible" class="w-full py-5 px-4 mb-5">
     <!--  -->
-    <ImageLoader
+    <!-- <ImageLoader
       img-class="object-cover w-full h-full"
       :src="shopImage"
       alt="banner image"
-    />
+    /> -->
     <!--  -->
 
     <!--  -->
-    <div class="absolute inset-0 flex items-center justify-center">
+    <div class="max-w-[300px]">
       <!--  -->
-      <h1
-        class="text-xl text-center text-white lg:text-2xl font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.4)]"
-      >
+      <h1 class="text-xl lg:text-2xl uppercase">
         {{ bannerName }}
       </h1>
+      <p v-if="props.banner.description" class="text-sm mt-3">
+        {{ props.banner.description }}
+      </p>
       <!--  -->
     </div>
     <!--  -->

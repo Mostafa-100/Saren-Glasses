@@ -34,16 +34,15 @@ const toggleSizes = () => {
       props.filters.sizes &&
       props.filters.sizes.length > 0
     "
-    class="border border-third rounded-lg overflow-hidden"
+    class="overflow-hidden"
   >
     <!--  -->
     <div
       v-if="sidebar.sizes.title.length > 0"
-      class="h-10 flex items-center justify-between bg-third px-4 cursor-pointer hover:text-secondary transition-color duration-300"
-      @click="toggleSizes"
+      class="h-10 flex items-center justify-between bg-third px-4"
     >
       <!--  -->
-      <h2 class="font-medium tracking-normal text-sm capitalize">
+      <h2 class="text-sm capitalize">
         {{ sidebar.sizes.title }}
       </h2>
       <!--  -->
@@ -63,13 +62,11 @@ const toggleSizes = () => {
     <!--  -->
     <transition name="slide-down">
       <!--  -->
-      <div v-if="isOpen" class="flex flex-col gap-3 px-4 py-3">
+      <div class="flex flex-col gap-3 px-4 py-3">
         <!--  -->
         <div v-for="(item, i) in props.filters.sizes" :key="i">
           <!--  -->
-          <label
-            class="relative flex items-center w-full gap-4 cursor-pointer hover:bg-third"
-          >
+          <label class="relative flex items-center w-full gap-4">
             <!--  -->
             <input
               :id="item.value1"
@@ -86,9 +83,7 @@ const toggleSizes = () => {
               "
             />
             <!--  -->
-            <div
-              class="w-4 h-4 flex justify-center items-center bg-white border border-third rounded-sm"
-            >
+            <div class="w-4 h-4 flex justify-center items-center bg-white">
               <!--  -->
               <Icon
                 name="material-symbols:check-rounded"

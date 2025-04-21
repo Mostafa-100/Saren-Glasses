@@ -17,23 +17,23 @@ const prev = () => {
 </script>
 
 <template>
-  <div class="relative w-full max-w-3xl mx-auto overflow-hidden">
+  <div class="relative w-full max-w-3xl mx-auto overflow-hidden group">
     <!-- Image -->
     <img
       :src="props.images[currentIndex].src"
       :alt="props.images[currentIndex].alt || 'Slide Image'"
-      :class="`object-cover rounded-lg ${props.imageSizeClasses ? props.imageSizeClasses : 'w-full h-auto'}`"
+      :class="`object-cover ${props.imageSizeClasses ? props.imageSizeClasses : 'w-full h-auto'}`"
     />
 
     <!-- Arrows -->
     <button
-      class="absolute top-1/2 left-4 transform -translate-y-1/2 text-3x rounded-full p-2"
+      class="absolute top-1/2 left-4 transform -translate-y-1/2 text-3xl rounded-full p-2 opacity-0 transition duration-300 group-hover:opacity-100"
       @click="prev"
     >
       ‹
     </button>
     <button
-      class="absolute top-1/2 right-4 transform -translate-y-1/2 text-3xl p-2"
+      class="absolute top-1/2 right-4 transform -translate-y-1/2 text-3xl rounded-full p-2 opacity-0 transition duration-300 group-hover:opacity-100"
       @click="next"
     >
       ›

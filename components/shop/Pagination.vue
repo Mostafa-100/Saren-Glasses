@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const props: any = defineProps({
   paginate: {
@@ -49,7 +49,7 @@ const pages = computed(() => {
     <button
       v-if="paginate.current_page > 1"
       aria-label="left_button"
-      class="h-10 flex items-center justify-center gap-2 px-4 bg-secondary text-white border border-secondary rounded-full hover:bg-transparent hover:text-secondary transition-all duration-300"
+      class="h-10 flex items-center justify-center gap-2 px-4 bg-blue-500 text-white border border-blue-500 rounded-full hover:bg-transparent hover:text-blue-500 transition-all duration-300"
       @click="getItems(paginate.current_page - 1)"
     >
       <!--  -->
@@ -69,9 +69,9 @@ const pages = computed(() => {
       v-for="page in pages"
       :key="page"
       aria-label="pagination button"
-      class="h-10 min-h-10 flex items-center justify-center gap-2 px-4 border rounded-lg text-primary hover:bg-secondary hover:text-white transition-all duration-300"
+      class="h-10 min-h-10 flex items-center justify-center gap-2 px-4 border rounded-lg text-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300"
       :class="{
-        'border-secondary': page === paginate.current_page,
+        'border-blue': page === paginate.current_page,
         'border-third': page !== paginate.current_page,
       }"
       @click="getItems(page)"
@@ -88,7 +88,7 @@ const pages = computed(() => {
     <button
       v-if="paginate.current_page < paginate.last_page"
       aria-label="right_button"
-      class="h-10 flex items-center justify-center gap-2 px-4 bg-secondary text-white border border-secondary rounded-full hover:bg-transparent hover:text-secondary transition-all duration-300"
+      class="h-10 flex items-center justify-center gap-2 px-4 bg-blue-500 text-white border border-blue-500 rounded-full hover:bg-transparent hover:text-blue-500 transition-all duration-300"
       @click="getItems(paginate.current_page + 1)"
     >
       <!--  -->

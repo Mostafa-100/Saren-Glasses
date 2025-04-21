@@ -39,7 +39,7 @@ onMounted(() => {
 
 <template>
   <!--  -->
-  <div class="header absolute top-0 w-full">
+  <div class="header absolute top-0 w-full z-10">
     <!--  -->
     <appsLoader placement="BEFORE_HEADER" />
     <!--  -->

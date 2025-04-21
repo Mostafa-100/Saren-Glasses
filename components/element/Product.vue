@@ -288,7 +288,7 @@ const removeFromWishlist = () => {
             <!--  -->
             <button
               :title="isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'"
-              :class="`h-9 w-9 flex items-center justify-center text-secondary ${textColorClass} transition-all duration-300`"
+              :class="`h-9 w-9 flex items-center justify-center ${textColorClass} transition-all duration-300`"
               @click="toggleWishlist"
             >
               <!--  -->

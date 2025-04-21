@@ -10,11 +10,11 @@ const props: any = defineProps({
   },
   gridClass: {
     type: String,
-    default: 'w-full',
+    default: "w-full",
   },
   emptyText: {
     type: String,
-    default: 'No products available',
+    default: "No products available",
   },
 });
 </script>
@@ -37,7 +37,6 @@ const props: any = defineProps({
           <ElementProduct
             :item="item"
             :page="props.gridClass === 'w-full' ? 'shop' : 'home'"
-            class="border border-third rounded-2xl overflow-hidden"
           />
           <!--  -->
         </div>

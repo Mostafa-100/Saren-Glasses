@@ -29,28 +29,27 @@ const toggleBrands = () => {
   <!--  -->
   <div
     v-if="props.sidebar.brands.active && props.brands.length > 0"
-    class="border border-third rounded-lg overflow-hidden"
+    class="overflow-hidden"
   >
     <!--  -->
     <div
       v-if="sidebar.brands.title.length > 0"
-      class="h-10 flex items-center justify-between bg-third px-4 cursor-pointer hover:text-secondary transition-color duration-300"
-      @click="toggleBrands"
+      class="h-10 flex items-center justify-between bg-third px-4 cursor-pointer"
     >
       <!--  -->
-      <h2 class="font-medium tracking-normal text-sm capitalize">
+      <h2 class="text-sm capitalize">
         {{ sidebar.brands.title }}
       </h2>
       <!--  -->
 
       <!--  -->
-      <Icon
+      <!-- <Icon
         :name="'solar:alt-arrow-down-linear'"
         :class="[
           'text-xl transition-transform duration-300',
           { 'rotate-180': isOpen },
         ]"
-      />
+      /> -->
       <!--  -->
     </div>
     <!--  -->
@@ -58,13 +57,11 @@ const toggleBrands = () => {
     <!--  -->
     <transition name="slide-down">
       <!--  -->
-      <div v-if="isOpen" class="flex flex-col gap-3 px-4 py-3">
+      <div class="flex flex-col gap-3 px-4 py-3">
         <!--  -->
         <div v-for="(item, i) in props.brands" :key="i">
           <!--  -->
-          <label
-            class="relative flex items-center w-full gap-4 cursor-pointer hover:bg-third"
-          >
+          <label class="relative flex items-center w-full gap-4 cursor-pointer">
             <!--  -->
             <input
               :id="item.slug"
@@ -79,14 +76,12 @@ const toggleBrands = () => {
               @change="props.setParams($event, 'brand.name-in', item.name)"
             />
             <!--  -->
-            <div
-              class="w-4 h-4 flex justify-center items-center bg-white border border-third rounded-sm"
-            >
+            <div class="w-4 h-4 flex justify-center items-center bg-white">
               <!--  -->
-              <Icon
+              <!-- <Icon
                 name="material-symbols:check-rounded"
                 class="hidden text-xl translate text-white"
-              />
+              /> -->
               <!--  -->
             </div>
             <!--  -->

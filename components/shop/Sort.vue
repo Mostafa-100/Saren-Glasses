@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
   sortLabels: {
@@ -16,21 +16,21 @@ const windowWidth = ref<number | null>(null);
 const isSortVisible = ref(false);
 
 const updateWindowWidth = () => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     windowWidth.value = window.innerWidth;
   }
 };
 
 onMounted(() => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     windowWidth.value = window.innerWidth;
-    window.addEventListener('resize', updateWindowWidth);
+    window.addEventListener("resize", updateWindowWidth);
   }
 });
 
 onUnmounted(() => {
-  if (typeof window !== 'undefined') {
-    window.removeEventListener('resize', updateWindowWidth);
+  if (typeof window !== "undefined") {
+    window.removeEventListener("resize", updateWindowWidth);
   }
 });
 
@@ -43,14 +43,14 @@ const toggleSortVisibility = (force: boolean | null) => {
 };
 
 const sortOptions = [
-  ['price.salePrice', 1, 'price_asc'],
-  ['price.salePrice', -1, 'price_desc'],
-  ['review.rating', -1, 'rating_desc'],
-  ['review.rating', 1, 'rating_asc'],
-  ['name', 1, 'name_asc'],
-  ['name', -1, 'name_desc'],
-  ['createdAt', -1, 'newest'],
-  ['createdAt', 1, 'oldest'],
+  ["price.salePrice", 1, "price_asc"],
+  ["price.salePrice", -1, "price_desc"],
+  ["review.rating", -1, "rating_desc"],
+  ["review.rating", 1, "rating_asc"],
+  ["name", 1, "name_asc"],
+  ["name", -1, "name_desc"],
+  ["createdAt", -1, "newest"],
+  ["createdAt", 1, "oldest"],
 ];
 
 const sorts = sortOptions.map(([field, order, label]) => ({
@@ -62,7 +62,7 @@ const currentSortName = computed(() => {
   const currentSort = sorts.find(
     (sort) => JSON.stringify(sort.field) === JSON.stringify(props.params.sort)
   );
-  return currentSort ? currentSort.name : '';
+  return currentSort ? currentSort.name : "";
 });
 </script>
 
@@ -75,24 +75,24 @@ const currentSortName = computed(() => {
   >
     <!--  -->
     <div
-      class="w-fit md:min-w-48 h-10 flex items-center justify-between gap-2 rounded-lg bg-third px-4 hover:scale-105 hover:opacity-90 transition-all duration-300"
+      class="w-fit md:min-w-48 h-10 flex items-center justify-between gap-2 rounded-lg bg-third px-4"
       @click="toggleSortVisibility(null)"
     >
       <!--  -->
-      <h2 class="text-sm font-medium">
-        {{ sortLabels.sort_by_text }}:
-        <span class="text-secondary">{{ currentSortName }}</span>
+      <h2 class="text-sm text-[#0f0f0f]">
+        <!-- {{ sortLabels.sort_by_text }}: -->
+        <span>{{ currentSortName }}</span>
       </h2>
       <!--  -->
 
       <!--  -->
-      <Icon name="solar:alt-arrow-down-linear" class="text-xl translate" />
+      <Icon name="ic:baseline-plus" class="text-sm translate" />
       <!--  -->
     </div>
     <!--  -->
 
     <!--  -->
-    <transition name="fade">
+    <transition>
       <!--  -->
       <div
         v-if="isSortVisible"
@@ -100,7 +100,7 @@ const currentSortName = computed(() => {
       >
         <!--  -->
         <div
-          class="flex flex-col gap-3 py-4 px-6 shadow-full bg-white border border-third rounded-lg hover:scale-105 transition-all duration-300"
+          class="flex flex-col gap-3 py-4 px-6 shadow-full bg-white border border-third"
         >
           <!--  -->
           <div
@@ -119,10 +119,7 @@ const currentSortName = computed(() => {
             <!--  -->
 
             <!--  -->
-            <label
-              class="cursor-pointer text-sm hover:text-secondary"
-              :for="sort.name"
-            >
+            <label class="cursor-pointer text-sm" :for="sort.name">
               {{ sort.name }}
             </label>
             <!--  -->

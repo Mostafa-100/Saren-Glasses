@@ -307,7 +307,7 @@ const removeFromWishlist = () => {
     <!--  -->
     <div
       v-if="loading"
-      class="container flex justify-center items-center py-10"
+      class="container flex justify-center items-center py-10 min-h-dvh"
     >
       <LoaderGlobal />
     </div>

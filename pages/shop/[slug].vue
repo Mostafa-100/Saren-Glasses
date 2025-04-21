@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, onUnmounted, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { useMainStore } from '@/stores/main';
+import { ref, reactive, onMounted, onUnmounted, watch } from "vue";
+import { useRoute } from "vue-router";
+import { useMainStore } from "@/stores/main";
 
 const { $settings, $storeino, $tools } = useNuxtApp();
 const $store = useMainStore();
@@ -24,7 +24,7 @@ const collections = ref([]);
 const brands = ref([]);
 const filters = ref(null);
 
-const gridClass = ref('w-1/2 md:w-1/3 lg:w-1/4');
+const gridClass = ref("w-full sm:w-1/2 md:w-1/3 lg:w-1/4");
 
 const loading = reactive({
   products: true,
@@ -46,7 +46,7 @@ const params = reactive({
   page: 1,
   search: route.query.search,
   limit: shop.value.pagination.limit,
-  'collections.slug-in': [],
+  "collections.slug-in": [],
   sort: { createdAt: -1 },
 });
 
@@ -54,25 +54,25 @@ const lastParams = reactive({
   page: 1,
   search: route.query.search,
   limit: shop.value.pagination.limit,
-  'collections.slug-in': [],
+  "collections.slug-in": [],
   sort: { createdAt: -1 },
 });
 
 const sorts = [
   {
-    field: { 'price.salePrice': 1 },
+    field: { "price.salePrice": 1 },
     name: shop.value.sorts.price_asc,
   },
   {
-    field: { 'price.salePrice': -1 },
+    field: { "price.salePrice": -1 },
     name: shop.value.sorts.price_desc,
   },
   {
-    field: { 'review.rating': -1 },
+    field: { "review.rating": -1 },
     name: shop.value.sorts.rating_desc,
   },
   {
-    field: { 'review.rating': 1 },
+    field: { "review.rating": 1 },
     name: shop.value.sorts.rating_asc,
   },
   {
@@ -133,7 +133,7 @@ const currentSortName = computed(() => {
   const currentSort = sorts.find(
     (sort) => JSON.stringify(sort.field) === JSON.stringify(params.sort)
   );
-  return currentSort ? currentSort.name : '';
+  return currentSort ? currentSort.name : "";
 });
 
 const pages = computed(() => {
@@ -211,22 +211,22 @@ const subCollections = () => {
 
 const setActive = (id: string, idRet: string) => {
   const element = document.getElementById(id);
-  if (element?.classList.contains('active-subcollections')) {
-    element.classList.remove('active-subcollections');
+  if (element?.classList.contains("active-subcollections")) {
+    element.classList.remove("active-subcollections");
   } else {
-    element?.classList.add('active-subcollections');
+    element?.classList.add("active-subcollections");
   }
 
   const icon = document.getElementById(idRet);
-  if (icon?.classList.contains('active-svg')) {
-    icon.classList.remove('active-svg');
+  if (icon?.classList.contains("active-svg")) {
+    icon.classList.remove("active-svg");
   } else {
-    icon?.classList.add('active-svg');
+    icon?.classList.add("active-svg");
   }
 };
 
 const setParams = (e: any, key: string, value: any) => {
-  if (key.includes('price') || key.includes('page')) {
+  if (key.includes("price") || key.includes("page")) {
     params[key] = e.target.value;
     return false;
   } else if (e.target.checked) {
@@ -238,44 +238,44 @@ const setParams = (e: any, key: string, value: any) => {
 
   for (const key in params) {
     switch (key) {
-      case 'collections.slug-in':
+      case "collections.slug-in":
         param.value = params[key];
         urlSlugs.value = params[key];
         break;
-      case 'price.salePrice-from':
-        query['price-from'] = params[key];
+      case "price.salePrice-from":
+        query["price-from"] = params[key];
         break;
-      case 'price.salePrice-to':
-        query['price-to'] = params[key];
+      case "price.salePrice-to":
+        query["price-to"] = params[key];
         break;
-      case 'options.values.value1':
-        query['colors-size'] = params[key];
+      case "options.values.value1":
+        query["colors-size"] = params[key];
         break;
-      case 'tags-in':
+      case "tags-in":
         query.tags = params[key];
         break;
-      case 'brand.slug-in':
+      case "brand.slug-in":
         query.brands = params[key];
         break;
-      case 'page':
+      case "page":
         query.page = [params[key]];
         break;
     }
   }
 
   let url = `/shop/`;
-  url += param.value.length > 0 ? [...new Set(param.value)].join(',') : '';
+  url += param.value.length > 0 ? [...new Set(param.value)].join(",") : "";
 
   for (const key in query) {
-    url += !url.includes('?') ? '?' : '&';
-    if (typeof query[key] === 'object') {
-      url += `${key}=${query[key].join(',')}`;
+    url += !url.includes("?") ? "?" : "&";
+    if (typeof query[key] === "object") {
+      url += `${key}=${query[key].join(",")}`;
     } else {
       url += `${key}=${query[key]}`;
     }
   }
 
-  window.history.pushState({}, '', url);
+  window.history.pushState({}, "", url);
 };
 
 const getFilters = async () => {
@@ -318,7 +318,7 @@ const getBrands = async () => {
 
 const getItems = async (page: number | null = null) => {
   if (page != null) {
-    setParams({ target: { value: page } }, 'page', page);
+    setParams({ target: { value: page } }, "page", page);
   }
 
   items.value = [];
@@ -342,44 +342,44 @@ const getItems = async (page: number | null = null) => {
 
 const currentSlug = () => {
   const slug: any = route.params.slug;
-  if (typeof slug !== 'undefined') {
-    urlSlugs.value = slug.split(',');
+  if (typeof slug !== "undefined") {
+    urlSlugs.value = slug.split(",");
   }
 };
 
 onMounted(async () => {
-  $store.seo.title = shop.value.title + ' - ' + $settings.store_name;
+  $store.seo.title = shop.value.title + " - " + $settings.store_name;
   $store.seo.description =
     shop.value.description || $settings.store_description;
 
   if (route.params.slug) {
-    param.value = route.params.slug.split(',');
-    route.params.slug.split(',').forEach((item) => {
-      params['collections.slug-in'].push(item);
+    param.value = route.params.slug.split(",");
+    route.params.slug.split(",").forEach((item) => {
+      params["collections.slug-in"].push(item);
     });
   }
 
   for (const key in route.query) {
     if (!route.query[key]) continue;
     switch (key) {
-      case 'price-from':
-        params['price.salePrice-from'] = route.query[key];
+      case "price-from":
+        params["price.salePrice-from"] = route.query[key];
         break;
-      case 'price-to':
-        params['price.salePrice-to'] = route.query[key];
+      case "price-to":
+        params["price.salePrice-to"] = route.query[key];
         break;
-      case 'colors-size':
-        params['options.values.value1'] = (route.query[key] as string).split(
-          ','
+      case "colors-size":
+        params["options.values.value1"] = (route.query[key] as string).split(
+          ","
         );
         break;
-      case 'tags':
-        params['tags-in'] = (route.query[key] as string).split(',');
+      case "tags":
+        params["tags-in"] = (route.query[key] as string).split(",");
         break;
-      case 'brands':
-        params['brand.slug-in'] = (route.query[key] as string).split(',');
+      case "brands":
+        params["brand.slug-in"] = (route.query[key] as string).split(",");
         break;
-      case 'page':
+      case "page":
         params.page = route.query[key];
         break;
     }
@@ -392,43 +392,41 @@ onMounted(async () => {
   await getBrands();
   subCollections();
 
-  $tools.call('PAGE_VIEW');
-  $storeino.fbpx('PageView');
+  $tools.call("PAGE_VIEW");
+  $storeino.fbpx("PageView");
 
   getWindowWidth();
-  window.addEventListener('resize', getWindowWidth);
+  window.addEventListener("resize", getWindowWidth);
 
   currentSlug();
 });
 
 onUnmounted(() => {
-  window.removeEventListener('resize', getWindowWidth);
+  window.removeEventListener("resize", getWindowWidth);
 });
+
+const showFilters = ref(false);
 </script>
 
 <template>
-  <div>
+  <div class="min-h-dvh py-[112px] bg-[#F1F1F1]">
     <!--  -->
-    <AppsLoader placement="SHOP_PAGE" />
+    <!-- <AppsLoader placement="SHOP_PAGE" /> -->
     <!--  -->
 
     <!--  -->
-    <GlobalNav
-      :home-name="pagesNav.home.name"
-      :current-page-name="pagesNav.shop.name"
-    />
     <!--  -->
 
     <!--  -->
     <div class="relative">
       <!--  -->
-      <transition name="fade">
+      <transition>
         <!--  -->
         <ShopBanner
           v-if="urlSlugsLength === 1"
           type="collection"
           :banner="selectedCollection"
-          class="absolute top-0 left-0 w-full h-full z-10"
+          class="w-full h-full"
         />
         <!--  -->
 
@@ -437,7 +435,7 @@ onUnmounted(() => {
           v-else
           type="default"
           :banner="shop.banner"
-          class="absolute top-0 left-0 w-full h-full z-10"
+          class="w-full h-full"
         />
         <!--  -->
       </transition>
@@ -448,12 +446,12 @@ onUnmounted(() => {
     <!--  -->
     <div class="container my-10 md:my-14 lg:my-16">
       <!--  -->
-      <AppsLoader placement="BEFORE_SHOP_SIDEBAR" />
+      <!-- <AppsLoader placement="BEFORE_SHOP_SIDEBAR" /> -->
       <!--  -->
 
       <div class="flex lg:gap-4">
         <!--  -->
-        <div v-if="sidebar.active" class="lg:w-2/6">
+        <div v-if="sidebar.active">
           <!--  -->
           <transition name="fade">
             <!--  -->
@@ -485,65 +483,7 @@ onUnmounted(() => {
                 <!--  -->
 
                 <!--  -->
-                <div
-                  v-if="
-                    !loading.filters && !loading.filters && !loading.collections
-                  "
-                  class="flex flex-col gap-4 p-4 lg:p-0"
-                >
-                  <!--  -->
-                  <ShopCollectionsFilter
-                    :sidebar="sidebar"
-                    :collections="collections"
-                    :params="params"
-                    :set-params="setParams"
-                  />
-                  <!--  -->
 
-                  <!--  -->
-                  <ShopPriceFilter
-                    :sidebar="sidebar"
-                    :filters="filters"
-                    :set-params="setParams"
-                  />
-                  <!--  -->
-
-                  <!--  -->
-                  <ShopSizesFilter
-                    :sidebar="sidebar"
-                    :filters="filters"
-                    :params="params"
-                    :set-params="setParams"
-                  />
-                  <!--  -->
-
-                  <!--  -->
-                  <ShopColorsFilter
-                    :sidebar="sidebar"
-                    :filters="filters"
-                    :params="params"
-                    :set-params="setParams"
-                  />
-                  <!--  -->
-
-                  <!--  -->
-                  <ShopTagsFilter
-                    :sidebar="sidebar"
-                    :filters="filters"
-                    :params="params"
-                    :set-params="setParams"
-                  />
-                  <!--  -->
-
-                  <!--  -->
-                  <ShopBrandsFilter
-                    :sidebar="sidebar"
-                    :brands="brands"
-                    :params="params"
-                    :set-params="setParams"
-                  />
-                  <!--  -->
-                </div>
                 <!--  -->
               </div>
               <!--  -->
@@ -555,15 +495,22 @@ onUnmounted(() => {
         <!--  -->
 
         <!--  -->
-        <div class="w-full lg:w-4/6">
+        <div class="w-full">
           <!--  -->
           <div class="h-12 lg:h-14 flex items-center justify-between">
             <!--  -->
-            <ShopSidebarToggle
+            <!-- <ShopSidebarToggle
               :active="sidebar.active"
               :filter-text="sidebar.filter_text"
               @toggle-sidebar="showSideBar = true"
-            />
+            /> -->
+            <button
+              @click="showFilters = !showFilters"
+              class="flex items-center"
+            >
+              <span class="text-sm text-[#0f0f0f]">Filters</span>
+              <Icon name="ic:baseline-plus" class="text-sm translate" />
+            </button>
             <!--  -->
 
             <!--  -->
@@ -571,15 +518,77 @@ onUnmounted(() => {
             <!--  -->
 
             <!--  -->
-            <ShopArticles
+            <!-- <ShopArticles
               :sidebar="sidebar"
               :total="paginate?.total"
               :articles-text="shop.content.articles_text"
-            />
+            /> -->
             <!--  -->
 
             <!--  -->
             <ShopSort :sort-labels="shop.sorts" :params="params" />
+            <!--  -->
+          </div>
+          <div
+            v-if="
+              !loading.filters &&
+              !loading.filters &&
+              !loading.collections &&
+              showFilters
+            "
+            class="flex flex-col md:flex-row *:grow gap-4 p-4 lg:p-0 border-top bg-[#F1F1F1]"
+          >
+            <!--  -->
+            <ShopCollectionsFilter
+              :sidebar="sidebar"
+              :collections="collections"
+              :params="params"
+              :set-params="setParams"
+            />
+            <!--  -->
+
+            <!--  -->
+            <ShopPriceFilter
+              :sidebar="sidebar"
+              :filters="filters"
+              :set-params="setParams"
+            />
+            <!--  -->
+
+            <!--  -->
+            <ShopSizesFilter
+              :sidebar="sidebar"
+              :filters="filters"
+              :params="params"
+              :set-params="setParams"
+            />
+            <!--  -->
+
+            <!--  -->
+            <ShopColorsFilter
+              :sidebar="sidebar"
+              :filters="filters"
+              :params="params"
+              :set-params="setParams"
+            />
+            <!--  -->
+
+            <!--  -->
+            <ShopTagsFilter
+              :sidebar="sidebar"
+              :filters="filters"
+              :params="params"
+              :set-params="setParams"
+            />
+            <!--  -->
+
+            <!--  -->
+            <ShopBrandsFilter
+              :sidebar="sidebar"
+              :brands="brands"
+              :params="params"
+              :set-params="setParams"
+            />
             <!--  -->
           </div>
           <!--  -->
@@ -626,23 +635,21 @@ onUnmounted(() => {
   background-color: var(--third-color);
 }
 
-input[type='checkbox']:checked + div {
+input[type="checkbox"]:checked + div {
   transition: all 0.3s ease-in-out;
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
+  background-color: #5c96fc;
+  border-color: #5c96fc;
   span {
     display: block;
   }
 }
 
-input[type='checkbox']:checked + div + label,
-input[type='radio']:checked + label {
-  transition: all 0.3s ease-in-out;
-  color: var(--secondary-text);
-  font-weight: 600;
+input[type="checkbox"]:checked + div + label,
+input[type="radio"]:checked + label {
+  color: #a59c9c;
 }
 
-[dir='rtl'] .sort-direction {
+[dir="rtl"] .sort-direction {
   left: 0px;
   right: auto;
 }

@@ -46,7 +46,7 @@ const showReviewsTab = computed(() => props.product.reviews.active);
     <div class="flex gap-4 items-center border-b border-third pt-1 px-4">
       <!--  -->
       <div
-        class="leading-10 border-b-4 border-black hover:text-[#42829C] cursor-pointer transition-all duration-300"
+        class="leading-10 border-b-4 border-blue-500 hover:text-[#42829C] cursor-pointer transition-all duration-300"
         :class="
           description ? 'text-[#42829C] border-[#42829C]' : 'border-transparent'
         "
@@ -63,7 +63,7 @@ const showReviewsTab = computed(() => props.product.reviews.active);
       <!--  -->
       <div
         v-if="showReviewsTab"
-        class="leading-10 border-b-4 border-black hover:text-[#42829C] cursor-pointer transition-all duration-300"
+        class="leading-10 border-b-4 border-blue-500 hover:text-[#42829C] cursor-pointer transition-all duration-300"
         :class="
           reviews ? 'text-secondary border-[#42829C]' : 'border-transparent'
         "
