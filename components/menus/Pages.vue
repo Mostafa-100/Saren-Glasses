@@ -31,12 +31,21 @@ const activeId2 = ref(null);
         @mouseleave="activeId2 = activeId2 = null"
       >
         <!--  -->
-        <NuxtLink
-          class="flex gap-2 items-center cursor-pointer hover:text-secondary"
-          :to="menu.url"
-        >
+        <NuxtLink class="flex gap-2 items-center cursor-pointer" :to="menu.url">
           <!--  -->
-          <span class="text-sm">{{ menu.text }}</span>
+          <div class="flex flex-col overflow-hidden h-[20px] group">
+            <span
+              class="text-sm transform transition-transform duration-300 group-hover:-translate-y-full"
+            >
+              {{ menu.text }}
+            </span>
+            <span
+              class="text-sm transform transition-transform duration-200 group-hover:-translate-y-full"
+            >
+              {{ menu.text }}
+            </span>
+          </div>
+
           <!--  -->
 
           <!--  -->

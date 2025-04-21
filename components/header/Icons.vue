@@ -38,7 +38,7 @@ const props = defineProps({
 <template>
   <NuxtLink
     :to="props.link"
-    class="flex flex-col items-center gap-1 hover:text-secondary"
+    class="flex flex-col items-center gap-1"
     :title="props.title"
   >
     <span class="relative flex items-center justify-center">

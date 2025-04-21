@@ -23,10 +23,7 @@ defineProps({
       <!--  -->
       <NuxtLink to="/" class="flex items-center gap-2">
         <!--  -->
-        <span
-          class="text-xs font-medium hover:text-secondary hover:underline"
-          >{{ homeName }}</span
-        >
+        <span class="text-xs font-medium hover:underline">{{ homeName }}</span>
         <!--  -->
 
         <!--  -->
@@ -42,9 +39,7 @@ defineProps({
         class="flex items-center gap-2"
       >
         <!--  -->
-        <span class="text-xs font-medium hover:text-secondary">{{
-          collection.name
-        }}</span>
+        <span class="text-xs font-medium">{{ collection.name }}</span>
         <!--  -->
 
         <!--  -->
