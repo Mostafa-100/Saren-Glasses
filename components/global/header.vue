@@ -35,6 +35,36 @@ const firstLetters = (firstName: string, lastName: string) => {
 onMounted(() => {
   customer.value = $store.customer?.customer || null;
 });
+
+// Add currencies and languages in header
+const activeId = ref(null);
+const storeLanguages = ref($settings.store_languages);
+const storeCurrencies = ref($settings.store_currencies);
+
+const dropdownMenus = computed(() => {
+  return [
+    {
+      _id: "lang",
+      text: $store.language.code,
+      active: header.language.active,
+      childrens: storeLanguages.value.map((l: any) => ({
+        _id: l.code,
+        text: l.name,
+        url: `?lang=${l.code}`,
+      })),
+    },
+    {
+      _id: "currency",
+      text: $store.currency.code,
+      active: header.currency.active,
+      childrens: storeCurrencies.value.map((c: any) => ({
+        _id: c.code,
+        text: c.name,
+        url: `?cur=${c.code}`,
+      })),
+    },
+  ].filter((item) => item.active);
+});
 </script>
 
 <template>
@@ -105,9 +135,86 @@ onMounted(() => {
           <!-- Center Content -->
 
           <!-- Right Content -->
+
           <div
-            class="w-1/2 lg:w-1/4 flex order-2 lg:order-none items-center justify-end"
+            class="flex w-1/2 lg:w-1/4 order-2 lg:order-none items-center justify-end lg:justify-around"
           >
+            <div
+              v-if="header.language.active || header.currency.active"
+              class="hidden lg:flex gap-2 items-center"
+            >
+              <!--  -->
+              <div
+                v-for="(item, i) in dropdownMenus"
+                :key="i"
+                class="flex flex-col relative px-2"
+              >
+                <!--  -->
+                <div
+                  class="flex items-center justify-between cursor-pointer"
+                  @click="activeId = activeId != item._id ? item._id : null"
+                >
+                  <!--  -->
+                  <span class="font-light text-sm">{{ item.text }}</span>
+                  <!--  -->
+
+                  <!--  -->
+                  <Icon
+                    v-if="item.childrens.length > 0"
+                    name="solar:alt-arrow-down-linear"
+                    class="text-sm translate"
+                    :class="[
+                      activeId == item._id
+                        ? 'rotate-180 transition-all duration-300'
+                        : '',
+                    ]"
+                  />
+                  <!--  -->
+                </div>
+                <!--  -->
+
+                <!--  -->
+                <transition name="slide-down">
+                  <!--  -->
+                  <div v-if="item._id == activeId">
+                    <!--  -->
+                    <div v-for="(item2, index) in item.childrens" :key="index">
+                      <!--  -->
+                      <div
+                        class="flex items-center cursor-pointer absolute top-full min-w-[200px] px-2 z-[999] left-0"
+                      >
+                        <!--  -->
+                        <a class="font-light text-sm" :href="item2.url">
+                          {{ item2.text }}
+                        </a>
+                        <!--  -->
+                      </div>
+                      <!--  -->
+
+                      <!--  -->
+                      <div v-for="(child, ii) in item2.childrens" :key="ii">
+                        <!--  -->
+                        <div
+                          class="flex items-center justify-between cursor-pointer"
+                        >
+                          <!--  -->
+                          <a class="font-light text-sm" :href="child.url">
+                            {{ child.text }}
+                          </a>
+                          <!--  -->
+                        </div>
+                        <!--  -->
+                      </div>
+                      <!--  -->
+                    </div>
+                    <!--  -->
+                  </div>
+                  <!--  -->
+                </transition>
+                <!--  -->
+              </div>
+              <!--  -->
+            </div>
             <!-- Icons -->
             <div class="flex items-center justify-end gap-4 lg:gap-6">
               <!-- Wishlist -->
