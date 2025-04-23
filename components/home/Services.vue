@@ -31,18 +31,17 @@ const itemsArray: any = computed(() => Object.values(services.items || {}));
       <div
         v-for="(item, index) in itemsArray"
         :key="index"
-        class="w-full p-2 group relative overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1"
+        class="w-full p-2 group relative overflow-hidden rounded-xl"
       >
         <!--  -->
-        <NuxtLink
-          :to="item.url"
+        <div
           class="block py-3 px-4 bg-white/10 backdrop-blur-lg rounded-lg transition-all duration-300"
         >
           <!--  -->
           <div class="flex items-center flex-col text-center gap-4">
             <!--  -->
             <div
-              class="relative flex-shrink-0 w-14 h-14 roundedoverflow-hidden bg-white/10 transition-transform duration-300 group-hover:scale-105"
+              class="relative flex-shrink-0 w-14 h-14 rounded overflow-hidden bg-white/10"
             >
               <!--  -->
               <ImageLoader
@@ -73,7 +72,7 @@ const itemsArray: any = computed(() => Object.values(services.items || {}));
             <!--  -->
           </div>
           <!--  -->
-        </NuxtLink>
+        </div>
         <!--  -->
       </div>
       <!--  -->
