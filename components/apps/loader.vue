@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useMainStore } from '@/stores/main';
 
@@ -89,4 +89,6 @@ onMounted(() => {
 
 <template>
   <div :id="placement"></div>
-</template>
+</template> -->
+
+<template></template>
