@@ -56,7 +56,9 @@ const dropdownMenus = computed(() => {
     >
       <!--  -->
       <div v-if="description.length > 0" class="container py-2">
-        <div class="flex justify-between items-center">
+        <div
+          class="flex justify-between items-center flex-col md:flex-row gap-2"
+        >
           <!--  -->
           <div
             class="text-sm font-light"
@@ -66,7 +68,7 @@ const dropdownMenus = computed(() => {
 
           <div
             v-if="header.language.active || header.currency.active"
-            class="flex gap-2 items-center"
+            class="flex items-center"
           >
             <!--  -->
             <div
