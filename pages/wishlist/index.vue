@@ -130,7 +130,7 @@ watch(
           <div
             v-for="(item, index) in items"
             :key="index"
-            class="w-1/2 md:w-1/3 lg:w-1/5 p-2"
+            class="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-2"
           >
             <!--  -->
             <WishlistProduct
