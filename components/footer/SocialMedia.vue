@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref } from "vue";
 
 const props = defineProps({
   footer: {
@@ -10,36 +10,36 @@ const props = defineProps({
 
 const socialMedia = ref([
   {
-    name: 'facebook',
-    image: 'hugeicons:facebook-02',
+    name: "facebook",
+    image: "hugeicons:facebook-02",
   },
   {
-    name: 'twitter',
-    image: 'hugeicons:new-twitter',
+    name: "twitter",
+    image: "hugeicons:new-twitter",
   },
   {
-    name: 'instagram',
-    image: 'hugeicons:instagram',
+    name: "instagram",
+    image: "hugeicons:instagram",
   },
   {
-    name: 'youtube',
-    image: 'hugeicons:youtube',
+    name: "youtube",
+    image: "hugeicons:youtube",
   },
   {
-    name: 'linkedin',
-    image: 'hugeicons:linkedin-02',
+    name: "linkedin",
+    image: "hugeicons:linkedin-02",
   },
   {
-    name: 'whatsapp',
-    image: 'hugeicons:whatsapp',
+    name: "whatsapp",
+    image: "hugeicons:whatsapp",
   },
   {
-    name: 'snapchat',
-    image: 'hugeicons:snapchat',
+    name: "snapchat",
+    image: "hugeicons:snapchat",
   },
   {
-    name: 'tiktok',
-    image: 'ic:baseline-tiktok',
+    name: "tiktok",
+    image: "ic:baseline-tiktok",
   },
 ]);
 

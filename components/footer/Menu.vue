@@ -34,7 +34,7 @@ const footerMenu = computed(() =>
   <div
     v-for="(item, i) in footerMenu"
     :key="i"
-    class="flex flex-col w-full px-4 menu sm:w-1/2 lg:w-auto lg:flex-1"
+    class="flex flex-col w-full px-4 menu items-center mb-4 md:mb-0 md:items-start text-center md:text-start sm:w-1/2 lg:w-auto lg:flex-1"
     :class="item.menu ? 'gap-4' : ''"
   >
     <!--  -->

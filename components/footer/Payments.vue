@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref } from "vue";
 
 const props = defineProps({
   methods: {
@@ -10,24 +10,24 @@ const props = defineProps({
 
 const paymentMethods = ref([
   {
-    name: 'visa',
-    image: 'ri:visa-line',
+    name: "visa",
+    image: "ri:visa-line",
   },
   {
-    name: 'mastercard',
-    image: 'uit:master-card',
+    name: "mastercard",
+    image: "uit:master-card",
   },
   {
-    name: 'transfer',
-    image: 'basil:bank-outline',
+    name: "transfer",
+    image: "basil:bank-outline",
   },
   {
-    name: 'paypal',
-    image: 'hugeicons:paypal',
+    name: "paypal",
+    image: "hugeicons:paypal",
   },
   {
-    name: 'cash',
-    image: 'formkit:usdc',
+    name: "cash",
+    image: "formkit:usdc",
   },
 ]);
 
@@ -38,7 +38,7 @@ const filteredPaymentMethods = computed(() =>
 
 <template>
   <!--  -->
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 w-full md:w-auto items-center md:items-start">
     <!--  -->
     <h3 v-if="props.methods" class="flex items-center text-base font-medium">
       {{ props.methods.title }}

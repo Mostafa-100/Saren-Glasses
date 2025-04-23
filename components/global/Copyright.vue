@@ -12,7 +12,7 @@ const textColor = copyright.colors.text_color;
 
 <template>
   <!--  -->
-  <div class="flex flex-col">
+  <div class="flex flex-col text-center md:text-start">
     <!--  -->
     <div
       class="border-t"
