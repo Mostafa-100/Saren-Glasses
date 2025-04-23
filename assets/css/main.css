@@ -189,6 +189,7 @@ h6 {
 
 /* Toast */
 .toast {
+  font-size: 13px;
   position: fixed;
   display: flex;
   bottom: 20px;
@@ -197,7 +198,7 @@ h6 {
   background-color: #fff !important;
   box-shadow: 0 5px 10px 0px #00000044;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 8px 18px;
   z-index: 99999999;
   align-items: center;
 }
@@ -217,11 +218,11 @@ h6 {
 }
 
 .toast.error .toast-progress {
-  background-color: red;
+  background-color: rgb(212, 27, 27);
 }
 
 .toast.success .toast-progress {
-  background-color: green;
+  background-color: rgb(12, 196, 12);
 }
 
 .toast.error svg {

@@ -96,8 +96,6 @@ const fetchData = async () => {
     const { data } = await $storeino.products.get({ slug });
     item.value = data;
 
-    console.log("Item", item.value);
-
     // Change quantity default to 1
     item.value.quantity.default = 1;
 
