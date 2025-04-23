@@ -65,7 +65,7 @@ const showReviewsTab = computed(() => props.product.reviews.active);
         v-if="showReviewsTab"
         class="leading-10 border-b-4 border-blue-500 hover:text-[#42829C] cursor-pointer transition-all duration-300"
         :class="
-          reviews ? 'text-secondary border-[#42829C]' : 'border-transparent'
+          reviews ? 'text-blue-500 border-[#42829C]' : 'border-transparent'
         "
         @click="switchToReviews"
       >
