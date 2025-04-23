@@ -15,9 +15,6 @@ const props = defineProps({
   },
 });
 
-// Templ
-console.log("Banner", props.banner);
-
 const isVisible = computed(() => {
   if (props.type === "collection") return true;
   return props.banner.active;

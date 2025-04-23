@@ -214,7 +214,6 @@ const quantitySelected = (quantity: any) => {
   } else {
     price.value.salePrice = item.value.price.salePrice * quantity;
     price.value.comparePrice = item.value.price.comparePrice * quantity;
-    console.log("Price value", price.value);
   }
 
   if (!import.meta.server) {

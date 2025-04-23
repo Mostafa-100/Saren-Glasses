@@ -25,8 +25,6 @@ function getSizeText(type: String) {
   }
 }
 
-console.log("Options", props.options);
-
 // Reactive State
 const selected = ref(props.variants[0]);
 const listStyleColorValue = ref({});

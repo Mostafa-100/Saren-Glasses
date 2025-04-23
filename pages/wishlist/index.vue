@@ -18,8 +18,6 @@ const storeDescription = $settings.store_description;
 const pagesNav = ref(sections.pages);
 const wishlist: any = ref(sections.wishlist);
 
-console.log("wishlist", wishlist);
-
 const buttons = ref(wishlist.value.buttons);
 const texts = ref(wishlist.value.texts);
 
@@ -29,8 +27,6 @@ const setSeo = () => {
   $store.seo.title = title;
   $store.seo.description = description;
 };
-
-console.log($settings.store_name);
 
 const initWishlist = async () => {
   items.value = [];

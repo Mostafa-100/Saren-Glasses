@@ -9,8 +9,6 @@ const items: any = ref([]);
 const loading = ref(true);
 let collections = $settings.sections.collections;
 
-console.log("Collections", collections);
-
 // collections = splitArray(collections);
 
 // TODO: Splite collections into two parts one contain 3 collections, and rest contain the rest

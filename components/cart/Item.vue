@@ -49,9 +49,6 @@ watch(
 const remove = () => {
   emit("remove", props.item);
 };
-
-// Temp
-console.log("Cart item", props.item);
 </script>
 
 <template>

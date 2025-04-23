@@ -1,8 +1,6 @@
 <script setup>
 const { $settings } = useNuxtApp();
 const { selections } = $settings.sections;
-
-console.log(selections);
 </script>
 
 <template>

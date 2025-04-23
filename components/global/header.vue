@@ -12,8 +12,6 @@ const wishlist = ref(header.wishlist);
 const cart = ref(header.cart);
 const account = ref(header.account);
 
-console.log("Cart length", $store.cart);
-
 const desktopLogo = ref(header.logo.desktop);
 const mobileLogo = ref(header.logo.mobile);
 
