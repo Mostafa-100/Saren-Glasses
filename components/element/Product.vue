@@ -49,6 +49,10 @@ const isInWishlist = computed(() =>
   $store.wishlist.some((item) => item._id === props.item._id)
 );
 
+const isInCart = computed(() =>
+  $store.cart.some((item) => item._id === props.item._id)
+);
+
 const stockText = computed(() =>
   outOfStock.value
     ? products.stock.out_of_stock_text
@@ -319,7 +323,11 @@ const removeFromWishlist = () => {
             >
               <!--  -->
               <Icon
-                name="solar:cart-large-2-linear"
+                :name="
+                  !isInCart
+                    ? 'solar:cart-large-2-linear'
+                    : 'solar:cart-large-2-bold'
+                "
                 :class="`text-lg translate ${textColorClass}`"
               />
               <!--  -->

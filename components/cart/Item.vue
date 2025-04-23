@@ -60,7 +60,7 @@ console.log("Cart item", props.item);
     class="relative flex flex-col md:flex-row items-center gap-1 md:gap-2 lg:gap-4 rounded-lg border border-third bg-white p-3"
   >
     <!--  -->
-    <div class="w-full flex gap-2">
+    <div class="w-full flex-col sm:flex-row flex gap-2">
       <!--  -->
       <NuxtLink
         :to="`/products/${props.item.slug}`"
