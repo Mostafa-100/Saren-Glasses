@@ -46,7 +46,7 @@ const textColor = ref(footer.colors.text_color);
         <!--  -->
 
         <!--  -->
-        <FooterPayments :methods="footer.methods" />
+        <!-- <FooterPayments :methods="footer.methods" /> -->
         <!--  -->
       </div>
       <!--  -->
