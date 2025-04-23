@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { useNuxtApp } from '#app';
+import { ref, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useNuxtApp } from "#app";
 
 const items = ref([]);
 const item: any = ref(null);
@@ -31,7 +31,7 @@ const fetchData = async () => {
       router.push(`/shop/${item.value.slug}`);
     }
   } catch (err) {
-    console.log('🚀 ~ fetchData ~ err:', err);
+    console.log("🚀 ~ fetchData ~ err:", err);
     router.push(`/shop`);
   } finally {
     loading.value = false;
@@ -41,13 +41,13 @@ const fetchData = async () => {
 onMounted(async () => {
   await fetchData();
 
-  $tools.call('PAGE_VIEW');
-  $storeino.fbpx('PageView');
+  $tools.call("PAGE_VIEW");
+  $storeino.fbpx("PageView");
 });
 </script>
 
 <template>
-  <div class="collections-page">
+  <div class="collections-page min-h-dvh pt-[112px]">
     <!-- -->
     <AppsLoader placement="COLLECTIONS_PAGE" />
     <!-- -->
