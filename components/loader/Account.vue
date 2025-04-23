@@ -1,25 +1,11 @@
 <template>
-  <span class="loader"></span>
+  <span class="flex space-x-1">
+    <span
+      class="w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.3s]"
+    ></span>
+    <span
+      class="w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.15s]"
+    ></span>
+    <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></span>
+  </span>
 </template>
-
-<style>
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid var(--primary-color);
-  border-bottom-color: var(--secondary-color);
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-</style>
