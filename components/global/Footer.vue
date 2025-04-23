@@ -31,23 +31,23 @@ const textColor = ref(footer.colors.text_color);
           <!--  -->
         </div>
         <!--  -->
-      </div>
-
-      <!--  -->
-      <div
-        class="container flex flex-wrap justify-between py-10 container-nop menus lg:py-14 gap-y-4"
-      >
-        <!--  -->
-        <FooterAbout :about="footer.about" />
-        <!--  -->
 
         <!--  -->
-        <FooterMenu :menus="footer.menus" />
-        <!--  -->
+        <div
+          class="container flex flex-wrap justify-between py-10 container-nop menus lg:py-14 gap-y-4"
+        >
+          <!--  -->
+          <FooterAbout :about="footer.about" />
+          <!--  -->
 
-        <!--  -->
-        <!-- <FooterPayments :methods="footer.methods" /> -->
-        <!--  -->
+          <!--  -->
+          <FooterMenu :menus="footer.menus" />
+          <!--  -->
+
+          <!--  -->
+          <!-- <FooterPayments :methods="footer.methods" /> -->
+          <!--  -->
+        </div>
       </div>
       <!--  -->
     </footer>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const props: any = defineProps({
   post: {
@@ -23,10 +23,7 @@ const filteredSocialMedia = computed(() =>
     <!--  -->
     <div class="flex items-center justify-center">
       <!--  -->
-      <h3
-        v-if="post.share_buttons.title.length > 0"
-        class="text-lg font-bold text-primary"
-      >
+      <h3 v-if="post.share_buttons.title.length > 0" class="text-lg uppercase">
         {{ post.share_buttons.title }}
       </h3>
       <!--  -->
@@ -42,7 +39,7 @@ const filteredSocialMedia = computed(() =>
         :href="item.url"
         target="_blank"
         rel="noopener noreferrer"
-        class="w-10 h-10 flex items-center justify-center p-2 rounded-full hover:opacity-90 hover:scale-105 transition-all duration-300"
+        class="w-10 h-10 flex items-center justify-center p-2"
         :style="{
           backgroundColor: item.color,
         }"
