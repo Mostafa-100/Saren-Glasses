@@ -5589,13 +5589,13 @@
           }
         },
         "hero": {
-          "image": null,
-          "description": "Whether you're looking to make a bold statement or keep it subtle and sophisticated, our exclusive pieces have something for every style. Discover timeless designs and cutting-edge frames that enhance your individuality.",
-          "header": "DISCOVER OUR SIGNATURE EYEWEAR COLLECTION",
-          "learn_more_button_text": "Learn More",
-          "buy_now_button_text": "Buy Now",
           "active": true,
+          "header": "DISCOVER OUR SIGNATURE EYEWEAR COLLECTION",
+          "description": "Whether you're looking to make a bold statement or keep it subtle and sophisticated, our exclusive pieces have something for every style. Discover timeless designs and cutting-edge frames that enhance your individuality.",
+          "image": null,
+          "buy_now_button_text": "Buy Now",
           "buy_now_button_url": "/shop",
+          "learn_more_button_text": "Learn More",
           "learn_more_button_url": "/shop"
         },
         "styles": {

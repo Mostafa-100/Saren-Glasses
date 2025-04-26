@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import fourColumnsIcon from "@/assets/four-columns.svg";
-import threeColumnsIcon from "@/assets/three-columns.svg";
-import twoColumnsIcon from "@/assets/two-columns.svg";
+import fourColumnsIcon from "@/assets/four-columns.png";
+import threeColumnsIcon from "@/assets/three-columns.png";
+import twoColumnsIcon from "@/assets/two-columns.png";
 
 defineProps({
   modelValue: {
